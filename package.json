@@ -1,0 +1,39 @@
+{
+  "name": "hph-pef-tech-showcase",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "HPH & PEF 技术展示平台 - 专注于展示HPH纳米粉碎动态杀菌技术和PEF超低温脉冲电场保鲜技术",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "analyze": "vite build --mode analyze"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "terser": "^5.29.1",
+    "vite": "^5.1.6"
+  },
+  "keywords": [
+    "HPH",
+    "PEF",
+    "纳米破碎",
+    "动态灭菌",
+    "超冰温保鲜",
+    "脉冲电场",
+    "技术展示",
+    "React",
+    "Vite"
+  ],
+  "author": "HPH & PEF Technology Team",
+  "license": "MIT"
+}

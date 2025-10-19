@@ -1,0 +1,1015 @@
+/* 日式极简风格详情页样式 */
+
+/* 基础重置和设置 */
+.detail-page-container {
+  min-height: 100vh;
+  background: #fefefe !important;
+  color: #2a2a2a;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* 确保主要区域没有背景色 */
+.hero-section,
+.hero-content,
+.content-section,
+.section-header,
+.content-grid,
+.content-block,
+.application-grid,
+.app-category,
+.app-items,
+.app-item {
+  background: transparent !important;
+}
+
+/* 导航栏 */
+.detail-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 3rem;
+  z-index: 1000;
+  background: transparent;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #2a2a2a;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+  font-weight: 300;
+}
+
+.back-btn:hover {
+  opacity: 0.6;
+  transform: translateX(-4px);
+}
+
+/* 主要内容区域 */
+.detail-content {
+  padding-top: 8rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+/* Hero 区域 */
+.hero-section {
+  margin-bottom: 12rem;
+  padding: 6rem 0;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 8rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+}
+
+.hero-subtitle {
+  font-size: 4rem;
+  color: #666;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.hero-description {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-description p {
+  font-size: 1.6rem;
+  color: #555;
+  margin-bottom: 2.4rem;
+  font-weight: 400;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+}
+
+.hero-description p:last-child {
+  margin-bottom: 0;
+}
+
+/* 内容区块 */
+.content-section {
+  margin-bottom: 15rem;
+  position: relative;
+}
+
+.section-header {
+  margin-bottom: 6rem;
+  text-align: center;
+}
+
+.section-header h2 {
+  font-size: 3.5rem;
+  color: #1a1a1a;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+}
+
+.section-line {
+  width: 60px;
+  height: 1px;
+  background: #d0d0d0;
+  margin: 0 auto;
+}
+
+/* 网格布局 */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6rem 8rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.content-block {
+  padding: 0;
+}
+
+.content-block h3 {
+  font-size: 2.2rem;
+  color: #2a2a2a;
+  font-weight: 500;
+  margin-bottom: 2.2rem;
+  letter-spacing: 0.02em;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+}
+
+.content-block p {
+  font-size: 1.4rem;
+  color: #666;
+  font-weight: 400;
+  line-height: 2.0;
+  margin-bottom: 1rem;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+}
+
+/* 技术列表 */
+.tech-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tech-list li {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 1.2rem;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.tech-list li strong {
+  color: #2a2a2a;
+  font-weight: 500;
+}
+
+/* 效果展示 */
+.effect-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.effect-item:last-child {
+  border-bottom: none;
+}
+
+.effect-name {
+  font-size: 1rem;
+  color: #2a2a2a;
+  font-weight: 400;
+}
+
+.effect-value {
+  font-size: 1rem;
+  color: #888;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+  font-weight: 400;
+}
+
+/* 应用领域 */
+.application-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8rem 6rem;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.app-category h3 {
+  font-size: 2.0rem;
+  color: #2a2a2a;
+  font-weight: 500;
+  margin-bottom: 3rem;
+  letter-spacing: 0.02em;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+}
+
+.app-items {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.app-item h4 {
+  font-size: 1.6rem;
+  color: #2a2a2a;
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+}
+
+.app-item p {
+  font-size: 1.2rem;
+  color: #666;
+  font-weight: 400;
+  line-height: 1.9;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+}
+
+/* 解决方案特殊样式 */
+.solution-content {
+  margin-left: 8%;
+  max-width: 1000px;
+}
+
+.solution-highlight {
+  margin-bottom: 6rem;
+  padding: 4rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.solution-highlight h3 {
+  font-size: 3.6rem;
+  color: #1a1a1a;
+  font-weight: 400;
+  margin-bottom: 2.2rem;
+  letter-spacing: -0.01em;
+}
+
+.solution-highlight p {
+  font-size: 1.65rem;
+  color: #555;
+  font-weight: 300;
+  line-height: 1.9;
+  max-width: 700px;
+}
+
+.advantages-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6rem;
+}
+
+.advantage-item {
+  padding: 3rem 0;
+}
+
+.advantage-item h4 {
+  font-size: 2.8rem;
+  color: #2a2a2a;
+  font-weight: 500;
+  margin-bottom: 2.2rem;
+  letter-spacing: -0.01em;
+}
+
+.advantage-item p {
+  font-size: 1.5rem;
+  color: #666;
+  font-weight: 300;
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+}
+
+.advantage-note {
+  font-size: 1.35rem;
+  color: #888;
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* 流程步骤 */
+.process-steps {
+  display: flex;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.step-number {
+  font-size: 1.2rem;
+  color: #888;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+  font-weight: 400;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.1em;
+}
+
+.step-text {
+  font-size: 1.35rem;
+  color: #2a2a2a;
+  font-weight: 400;
+}
+
+/* 团队展示 */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6rem 8rem;
+  margin-left: 8%;
+  max-width: 1000px;
+}
+
+.team-member {
+  padding: 0;
+}
+
+.team-member h4 {
+  font-size: 2.8rem;
+  color: #2a2a2a;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+}
+
+.team-member .title {
+  font-size: 1.8rem;
+  color: #888;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+  font-weight: 400;
+  display: block;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+.team-member p {
+  font-size: 1.42rem;
+  color: #666;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+/* 公司价值观 */
+.values-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6rem;
+  margin-left: 8%;
+  max-width: 1000px;
+  margin-bottom: 6rem;
+}
+
+.value-item h4 {
+  font-size: 2.2rem;
+  color: #2a2a2a;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.value-item p {
+  font-size: 1.42rem;
+  color: #666;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.company-footer {
+  margin-left: 8%;
+  padding: 3rem 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.company-footer p {
+  font-size: 1.65rem;
+  color: #2a2a2a;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+
+.company-lab {
+  font-size: 1.35rem;
+  color: #888;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+/* 公司统计数据 */
+.company-content {
+  margin-left: 8%;
+  max-width: 1000px;
+}
+
+.company-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+  margin-bottom: 4rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  color: #1a1a1a;
+  font-weight: 500;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #888;
+  font-weight: 300;
+}
+
+.company-description p {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 300;
+  line-height: 1.8;
+  max-width: 700px;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .detail-content {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .hero-content,
+  .section-header,
+  .content-grid,
+  .application-grid,
+  .solution-content,
+  .team-grid,
+  .values-content,
+  .company-footer,
+  .company-content {
+    margin-left: 4%;
+  }
+
+  .content-grid,
+  .application-grid,
+  .team-grid {
+    gap: 3rem 4rem;
+  }
+
+  .hero-title {
+    font-size: 3.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .detail-nav {
+    padding: 1.5rem 2rem;
+  }
+
+  .detail-content {
+    padding-top: 6rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .hero-content,
+  .section-header,
+  .content-grid,
+  .application-grid,
+  .solution-content,
+  .team-grid,
+  .values-content,
+  .company-footer,
+  .company-content {
+    margin-left: 0;
+  }
+
+  .hero-section {
+    margin-bottom: 8rem;
+    padding: 3rem 0;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .content-section {
+    margin-bottom: 6rem;
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .application-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .values-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .company-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .process-steps {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .company-stats {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+}
+
+/* 新增技术sections样式 */
+
+/* 核心技术展示 */
+.core-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+  margin-left: 8%;
+  max-width: 1000px;
+}
+
+.tech-item {
+  text-align: center;
+  padding: 2rem 1rem;
+  transition: transform 0.3s ease;
+}
+
+.tech-item:hover {
+  transform: translateY(-4px);
+}
+
+.tech-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #f8f8f8;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  color: #2a2a2a;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.tech-item h3 {
+  font-size: 1.1rem;
+  color: #2a2a2a;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.tech-image {
+  width: 100%;
+  height: auto;
+  min-height: 120px;
+  overflow: visible;
+  border-radius: 8px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.tech-image img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.tech-image:hover img {
+  transform: scale(1.05);
+}
+
+/* 技术验证与测试 */
+.validation-content {
+  margin-left: 8%;
+  max-width: 1000px;
+}
+
+.validation-item {
+  margin-bottom: 8rem;
+  padding-bottom: 5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.validation-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.validation-item h3 {
+  font-size: 3.2rem;
+  color: #1a1a1a;
+  font-weight: 500;
+  margin-bottom: 2.2rem;
+  letter-spacing: -0.01em;
+}
+
+.validation-item p {
+  font-size: 1.8rem;
+  color: #666;
+  font-weight: 300;
+  line-height: 1.9;
+  margin-bottom: 4rem;
+  max-width: 800px;
+}
+
+/* 专业应用领域小标题样式 */
+.validation-item .content-block h4 {
+  font-size: 2.0rem;
+  color: #2a2a2a;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+}
+
+.validation-item .content-block p {
+  font-size: 1.4rem;
+  color: #666;
+  font-weight: 400;
+  line-height: 2.0;
+  margin-bottom: 1rem;
+  font-family: "SimSun", "宋体", "Noto Serif SC", serif !important;
+}
+
+.test-charts {
+  width: 100%;
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.test-charts img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.comparison-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
+  margin-top: 3rem;
+}
+
+.comparison-group {
+  text-align: center;
+}
+
+.comparison-group h4 {
+  font-size: 2.4rem;
+  color: #2a2a2a;
+  font-weight: 500;
+  margin-bottom: 3rem;
+  letter-spacing: -0.01em;
+}
+
+.comparison-group img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* 竞品技术对比 */
+.comparison-content {
+  margin-left: 8%;
+  max-width: 1000px;
+}
+
+.comparison-item {
+  margin-bottom: 8rem;
+  padding-bottom: 5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.comparison-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.comparison-item h3 {
+  font-size: 3.2rem;
+  color: #1a1a1a;
+  font-weight: 500;
+  margin-bottom: 3rem;
+  letter-spacing: -0.01em;
+}
+
+.tech-comparison-table {
+  margin: 2rem 0;
+  overflow-x: auto;
+}
+
+.tech-comparison-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fafafa;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tech-comparison-table th,
+.tech-comparison-table td {
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.tech-comparison-table th {
+  background: #f0f0f0;
+  font-size: 2rem;
+  color: #2a2a2a;
+  font-weight: 500;
+}
+
+.tech-comparison-table td {
+  font-size: 1.42rem;
+  color: #666;
+  font-weight: 300;
+}
+
+.airflow-diagrams,
+.temperature-chart,
+.detailed-comparison {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.airflow-diagrams img,
+.temperature-chart img,
+.detailed-comparison img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.comparison-summary {
+  margin-top: 3rem;
+  background: #f8f8f8;
+  padding: 3rem;
+  border-radius: 8px;
+}
+
+.summary-section {
+  margin-bottom: 2rem;
+}
+
+.summary-section:last-child {
+  margin-bottom: 0;
+}
+
+.summary-section h4 {
+  font-size: 2.4rem;
+  color: #2a2a2a;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.summary-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.summary-section li {
+  font-size: 1.42rem;
+  color: #666;
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.summary-section li:before {
+  content: "•";
+  color: #999;
+  position: absolute;
+  left: 0;
+}
+
+/* 技术优势总结 */
+.advantages-summary {
+  margin-left: 8%;
+  max-width: 1000px;
+}
+
+.advantage-highlight {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.advantage-highlight h3 {
+  font-size: 3.6rem;
+  color: #1a1a1a;
+  font-weight: 500;
+  margin-bottom: 2.2rem;
+  letter-spacing: -0.01em;
+}
+
+.advantage-highlight p {
+  font-size: 1.65rem;
+  color: #555;
+  font-weight: 300;
+  line-height: 1.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.key-advantages {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem 6rem;
+}
+
+.advantage-card {
+  padding: 3.5rem;
+  background: #f8f8f8;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.advantage-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.advantage-card h4 {
+  font-size: 2.6rem;
+  color: #2a2a2a;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.advantage-card p {
+  font-size: 1.42rem;
+  color: #666;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+/* 响应式设计 - 新增sections */
+@media (max-width: 1024px) {
+  .core-tech-grid,
+  .validation-content,
+  .comparison-content,
+  .advantages-summary {
+    margin-left: 4%;
+  }
+
+  .core-tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .core-tech-grid,
+  .validation-content,
+  .comparison-content,
+  .advantages-summary {
+    margin-left: 0;
+  }
+
+  .core-tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .comparison-images {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .key-advantages {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .tech-comparison-table {
+    font-size: 0.85rem;
+  }
+
+  .tech-comparison-table th,
+  .tech-comparison-table td {
+    padding: 1rem;
+  }
+
+  .comparison-summary {
+    padding: 2rem;
+  }
+
+  .advantage-card {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .core-tech-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .tech-image {
+    height: 100px;
+  }
+
+  .validation-item h3,
+  .comparison-item h3 {
+    font-size: 1.3rem;
+  }
+
+  .advantage-highlight h3 {
+    font-size: 1.5rem;
+  }
+
+  .tech-comparison-table th,
+  .tech-comparison-table td {
+    padding: 0.8rem 0.5rem;
+    font-size: 0.8rem;
+  }
+}
