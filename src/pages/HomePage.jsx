@@ -811,11 +811,187 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* 山峰背景 */}
-      <div className="mountains">
-        <div></div>
-        <div></div>
-        <div></div>
+      {/* 双核HUD系统 - 左右分布科技界面 */}
+      <div className="dual-core-hud">
+        {/* 左侧圆环系统 - CORE ALPHA */}
+        <div className="hud-ring-system left-system">
+          <div className="ring-complex">
+            {/* 外层主环 */}
+            <div className="main-ring outer">
+              <div className="ring-segments">
+                {[...Array(36)].map((_, i) => (
+                  <div
+                    key={`outer-seg-${i}`}
+                    className="segment"
+                    style={{'--rotation': `${i * 10}deg`, '--delay': `${i * 0.05}s`}}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* 中层环 */}
+            <div className="main-ring middle">
+              <div className="ring-ticks">
+                {[...Array(24)].map((_, i) => (
+                  <div
+                    key={`mid-tick-${i}`}
+                    className="tick major"
+                    style={{'--rotation': `${i * 15}deg`, '--delay': `${i * 0.08}s`}}
+                  />
+                ))}
+                {[...Array(72)].map((_, i) => (
+                  <div
+                    key={`mid-minor-${i}`}
+                    className="tick minor"
+                    style={{'--rotation': `${i * 5}deg`, '--delay': `${i * 0.03}s`}}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* 内层环 */}
+            <div className="main-ring inner">
+              <div className="core-data">
+                <div className="data-node top">
+                  <span className="node-label">ALPHA</span>
+                  <span className="node-value">98.7%</span>
+                </div>
+                <div className="data-node bottom">
+                  <span className="node-label">SYNC</span>
+                  <span className="node-value">OK</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 中心核心 */}
+            <div className="system-core">
+              <div className="core-pulse-ring"></div>
+              <div className="core-center">
+                <span className="core-id">CORE α</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 左侧数据面板 */}
+          <div className="data-panels left">
+            <div className="panel-block top">
+              <div className="panel-header">
+                <span className="panel-code">RTCL-01</span>
+                <div className="status-dot active"></div>
+              </div>
+              <div className="panel-content">
+                <div className="data-line">
+                  <span className="label">POWER</span>
+                  <span className="value">2.47GW</span>
+                </div>
+                <div className="data-line">
+                  <span className="label">TEMP</span>
+                  <span className="value">298K</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="panel-block bottom">
+              <div className="mini-chart">
+                <div className="chart-bars">
+                  {[...Array(8)].map((_, i) => (
+                    <div key={i} className="bar" style={{'--height': `${Math.random() * 80 + 20}%`}}></div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 右侧圆环系统 - CORE BETA */}
+        <div className="hud-ring-system right-system">
+          <div className="ring-complex">
+            {/* 外层主环 */}
+            <div className="main-ring outer">
+              <div className="ring-segments">
+                {[...Array(36)].map((_, i) => (
+                  <div
+                    key={`outer-seg-r-${i}`}
+                    className="segment"
+                    style={{'--rotation': `${i * 10}deg`, '--delay': `${i * 0.05}s`}}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* 中层环 */}
+            <div className="main-ring middle">
+              <div className="ring-ticks">
+                {[...Array(24)].map((_, i) => (
+                  <div
+                    key={`mid-tick-r-${i}`}
+                    className="tick major"
+                    style={{'--rotation': `${i * 15}deg`, '--delay': `${i * 0.08}s`}}
+                  />
+                ))}
+                {[...Array(72)].map((_, i) => (
+                  <div
+                    key={`mid-minor-r-${i}`}
+                    className="tick minor"
+                    style={{'--rotation': `${i * 5}deg`, '--delay': `${i * 0.03}s`}}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* 内层环 */}
+            <div className="main-ring inner">
+              <div className="core-data">
+                <div className="data-node top">
+                  <span className="node-label">BETA</span>
+                  <span className="node-value">99.2%</span>
+                </div>
+                <div className="data-node bottom">
+                  <span className="node-label">FLUX</span>
+                  <span className="node-value">MAX</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 中心核心 */}
+            <div className="system-core">
+              <div className="core-pulse-ring"></div>
+              <div className="core-center">
+                <span className="core-id">CORE β</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 右侧数据面板 */}
+          <div className="data-panels right">
+            <div className="panel-block top">
+              <div className="panel-header">
+                <span className="panel-code">PERF-02</span>
+                <div className="status-dot active"></div>
+              </div>
+              <div className="panel-content">
+                <div className="data-line">
+                  <span className="label">FLUX</span>
+                  <span className="value">127.3%</span>
+                </div>
+                <div className="data-line">
+                  <span className="label">STAB</span>
+                  <span className="value">OPTIMAL</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="panel-block bottom">
+              <div className="efficiency-ring">
+                <svg viewBox="0 0 100 100" className="ring-svg">
+                  <circle cx="50" cy="50" r="40" className="ring-bg"/>
+                  <circle cx="50" cy="50" r="40" className="ring-fill" style={{'--progress': '92%'}}/>
+                </svg>
+                <div className="ring-label">92%</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* 间隔区域 */}
