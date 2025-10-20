@@ -818,35 +818,10 @@ const HomePage = () => {
           <div className="ring-complex">
             {/* 外层主环 */}
             <div className="main-ring outer">
-              <div className="ring-segments">
-                {[...Array(36)].map((_, i) => (
-                  <div
-                    key={`outer-seg-${i}`}
-                    className="segment"
-                    style={{'--rotation': `${i * 10}deg`, '--delay': `${i * 0.05}s`}}
-                  />
-                ))}
-              </div>
             </div>
 
             {/* 中层环 */}
             <div className="main-ring middle">
-              <div className="ring-ticks">
-                {[...Array(24)].map((_, i) => (
-                  <div
-                    key={`mid-tick-${i}`}
-                    className="tick major"
-                    style={{'--rotation': `${i * 15}deg`, '--delay': `${i * 0.08}s`}}
-                  />
-                ))}
-                {[...Array(72)].map((_, i) => (
-                  <div
-                    key={`mid-minor-${i}`}
-                    className="tick minor"
-                    style={{'--rotation': `${i * 5}deg`, '--delay': `${i * 0.03}s`}}
-                  />
-                ))}
-              </div>
             </div>
 
             {/* 内层环 */}
@@ -908,35 +883,10 @@ const HomePage = () => {
           <div className="ring-complex">
             {/* 外层主环 */}
             <div className="main-ring outer">
-              <div className="ring-segments">
-                {[...Array(36)].map((_, i) => (
-                  <div
-                    key={`outer-seg-r-${i}`}
-                    className="segment"
-                    style={{'--rotation': `${i * 10}deg`, '--delay': `${i * 0.05}s`}}
-                  />
-                ))}
-              </div>
             </div>
 
             {/* 中层环 */}
             <div className="main-ring middle">
-              <div className="ring-ticks">
-                {[...Array(24)].map((_, i) => (
-                  <div
-                    key={`mid-tick-r-${i}`}
-                    className="tick major"
-                    style={{'--rotation': `${i * 15}deg`, '--delay': `${i * 0.08}s`}}
-                  />
-                ))}
-                {[...Array(72)].map((_, i) => (
-                  <div
-                    key={`mid-minor-r-${i}`}
-                    className="tick minor"
-                    style={{'--rotation': `${i * 5}deg`, '--delay': `${i * 0.03}s`}}
-                  />
-                ))}
-              </div>
             </div>
 
             {/* 内层环 */}
