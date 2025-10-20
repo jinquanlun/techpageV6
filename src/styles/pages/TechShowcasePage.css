@@ -921,15 +921,19 @@
 }
 
 .skw-page-1 .skw-page__half--right .skw-page__content {
-  background: rgba(42, 42, 42, 0.6); /* HPH右侧灰色 - 更透明 */
+  background:rgba(235, 227, 199, 0.259); /* HPH右侧灰色 - 更透明 */
 }
 
 .skw-page-2 .skw-page__half--left .skw-page__content {
-  background: rgba(26, 29, 36, 0.6); /* PEF左侧深蓝灰色 - 更透明 */
+  background:
+    linear-gradient(0deg, rgba(84, 81, 72, 0.259), rgba(235, 227, 199, 0.04)),
+    rgba(20, 20, 22, 0.7); /* Chrome Grey基底配香槟色叠加 */
 }
 
 .skw-page-2 .skw-page__half--right .skw-page__content {
-  background: rgba(42, 52, 65, 0.6); /* PEF右侧深蓝灰色 - 更透明 */
+  background:
+    linear-gradient(0deg, rgba(165, 159, 131, 0.287), rgba(235, 227, 199, 0.06)),
+    rgba(193, 188, 159, 0.259); /* Chrome Grey基底配更多香槟色叠加 */
   color: #ffffff !important; /* 白色文字 */
 }
 

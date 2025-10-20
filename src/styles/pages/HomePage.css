@@ -292,6 +292,13 @@ button.contact-btn:hover .glow::before {
   animation: load 2s ease-in-out forwards, loadrot 2s ease-in-out forwards, spotlight 14s ease-in-out infinite;
 }
 
+/* 聚光灯在技术页面时隐藏 */
+.home-page.in-tech-section .header .spotlight {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s ease !important;
+}
+
 @keyframes loadrot {
   0% { rotate: 0deg; scale: 0; }
   100% { scale: 1; }
@@ -821,7 +828,7 @@ p {
 
 .right-system {
   animation-delay: 2.5s;
-  bottom: -20px;
+  bottom: 45px;
   right: -60px;
   z-index: 3;
   transform: perspective(1000px) rotateX(-10deg) rotateY(15deg);
@@ -1456,10 +1463,50 @@ p {
   }
 }
 
-/* 间隔区域 */
+/* 间隔区域 - 过渡分界线 */
 .hero-spacer {
   height: 46em;
   pointer-events: none;
+  position: relative;
+  --spacer-lines-clr: rgba(240, 234, 219, .25);
+}
+
+/* 过渡装饰线 */
+.hero-spacer::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--spacer-lines-clr), transparent);
+  opacity: 0;
+  animation: spacerLineReveal 3s ease-out 0.5s forwards;
+}
+
+.hero-spacer::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 8em;
+  background: var(--spacer-lines-clr);
+  opacity: 0;
+  animation: spacerLineReveal 3s ease-out 1s forwards;
+}
+
+@keyframes spacerLineReveal {
+  0% {
+    opacity: 0;
+    scale: 0;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
 }
 
 /* 添加向下滚动提示 */

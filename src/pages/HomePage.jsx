@@ -615,6 +615,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   const canvasRef = useRef(null);
   const [isGoldMode, setIsGoldMode] = useState(false);
+  const [isInTechSection, setIsInTechSection] = useState(false);
 
   // 粒子动画系统
   useEffect(() => {
@@ -720,6 +721,27 @@ const HomePage = () => {
     };
   }, []);
 
+  // 检测是否在技术展示区域
+  useEffect(() => {
+    const handleScroll = () => {
+      const techSection = document.querySelector('.tech-section');
+      if (techSection) {
+        const rect = techSection.getBoundingClientRect();
+        // 当技术展示区域出现在视口中时隐藏spotlight
+        const isVisible = rect.top <= window.innerHeight * 0.8 && rect.bottom >= 0;
+        setIsInTechSection(isVisible);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // 初始检查
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const toggleGoldMode = () => {
     setIsGoldMode(!isGoldMode);
   };
@@ -734,7 +756,7 @@ const HomePage = () => {
 
 
   return (
-    <div className={`home-page ${isGoldMode ? 'gold' : ''}`}>
+    <div className={`home-page ${isGoldMode ? 'gold' : ''} ${isInTechSection ? 'in-tech-section' : ''}`}>
       {/* Header */}
       <div className="header">
         <h2>
@@ -748,12 +770,14 @@ const HomePage = () => {
           <span className="contact-btn-content">技术展示</span>
         </button>
 
-        {/* 聚光灯效果 */}
-        <div className="spotlight">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+        {/* 聚光灯效果 - 在技术展示区域时隐藏 */}
+        {!isInTechSection && (
+          <div className="spotlight">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        )}
       </div>
 
       {/* 粒子画布 */}
