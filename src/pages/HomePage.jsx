@@ -812,161 +812,18 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* 主要描述 */}
-      <div className="heroP">
-        革新产品全球竞争力
-        <br />
-        我们拥有2项世界领先的专利技术
-      </div>
-
-      {/* 副标题描述 */}
-      <div className="subDescription">
-        <p>它们并非普通的量变工具</p>
-        <p>而是能够实现从 <span className="highlight">产品力本质</span> 到 <span className="highlight">商业模式</span></p>
-        <p><span className="emphasis">价值重塑+规则重构</span>的质变武器</p>
-      </div>
-
-      {/* 底部标语 */}
-      <div className="bottomSlogan">
-        <div className="slogan-text">
-          <span className="glow-text">穿越周期</span>
-          <span className="separator">·</span>
-          <span className="glow-text">双核无界</span>
+      {/* 统一的6行文字 */}
+      <div className="heroAllText">
+        <div className="text-line">革新产品全球竞争力</div>
+        <div className="text-line">我们拥有2项世界领先的专利技术</div>
+        <div className="text-line">它们并非普通的量变工具</div>
+        <div className="text-line">而是能够实现从 <span className="highlight">产品力本质</span> 到 <span className="highlight">商业模式</span></div>
+        <div className="text-line"><span>价值重塑+规则重构</span>的质变武器</div>
+        <div className="text-line bottom-line">
+          <span className="glow-text">穿越周期·双核无界</span>
         </div>
       </div>
 
-      {/* 双核HUD系统 - 左右分布科技界面 */}
-      <div className="dual-core-hud">
-        {/* 左侧圆环系统 - CORE ALPHA */}
-        <div className="hud-ring-system left-system">
-          <div className="ring-complex">
-            {/* 外层主环 */}
-            <div className="main-ring outer">
-            </div>
-
-            {/* 中层环 */}
-            <div className="main-ring middle">
-            </div>
-
-            {/* 内层环 */}
-            <div className="main-ring inner">
-              <div className="core-data">
-                <div className="data-node top">
-                  <span className="node-label">ALPHA</span>
-                  <span className="node-value">98.7%</span>
-                </div>
-                <div className="data-node bottom">
-                  <span className="node-label">SYNC</span>
-                  <span className="node-value">OK</span>
-                </div>
-              </div>
-            </div>
-
-            {/* 中心核心 */}
-            <div className="system-core">
-              <div className="core-pulse-ring"></div>
-              <div className="core-center">
-                <span className="core-id">CORE α</span>
-              </div>
-            </div>
-          </div>
-
-          {/* 左侧数据面板 */}
-          <div className="data-panels left">
-            <div className="panel-block top">
-              <div className="panel-header">
-                <span className="panel-code">RTCL-01</span>
-                <div className="status-dot active"></div>
-              </div>
-              <div className="panel-content">
-                <div className="data-line">
-                  <span className="label">POWER</span>
-                  <span className="value">2.47GW</span>
-                </div>
-                <div className="data-line">
-                  <span className="label">TEMP</span>
-                  <span className="value">298K</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="panel-block bottom">
-              <div className="mini-chart">
-                <div className="chart-bars">
-                  {[...Array(8)].map((_, i) => (
-                    <div key={i} className="bar" style={{'--height': `${Math.random() * 80 + 20}%`}}></div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 右侧圆环系统 - CORE BETA */}
-        <div className="hud-ring-system right-system">
-          <div className="ring-complex">
-            {/* 外层主环 */}
-            <div className="main-ring outer">
-            </div>
-
-            {/* 中层环 */}
-            <div className="main-ring middle">
-            </div>
-
-            {/* 内层环 */}
-            <div className="main-ring inner">
-              <div className="core-data">
-                <div className="data-node top">
-                  <span className="node-label">BETA</span>
-                  <span className="node-value">99.2%</span>
-                </div>
-                <div className="data-node bottom">
-                  <span className="node-label">FLUX</span>
-                  <span className="node-value">MAX</span>
-                </div>
-              </div>
-            </div>
-
-            {/* 中心核心 */}
-            <div className="system-core">
-              <div className="core-pulse-ring"></div>
-              <div className="core-center">
-                <span className="core-id">CORE β</span>
-              </div>
-            </div>
-          </div>
-
-          {/* 右侧数据面板 */}
-          <div className="data-panels right">
-            <div className="panel-block top">
-              <div className="panel-header">
-                <span className="panel-code">PERF-02</span>
-                <div className="status-dot active"></div>
-              </div>
-              <div className="panel-content">
-                <div className="data-line">
-                  <span className="label">FLUX</span>
-                  <span className="value">127.3%</span>
-                </div>
-                <div className="data-line">
-                  <span className="label">STAB</span>
-                  <span className="value">OPTIMAL</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="panel-block bottom">
-              <div className="efficiency-ring">
-                <svg viewBox="0 0 100 100" className="ring-svg">
-                  <circle cx="50" cy="50" r="40" className="ring-bg"/>
-                  <circle cx="50" cy="50" r="40" className="ring-fill" style={{'--progress': '92%'}}/>
-                </svg>
-                <div className="ring-label">92%</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* 间隔区域 */}
       <div className="hero-spacer"></div>
