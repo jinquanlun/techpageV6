@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState, memo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { hphCategories, pefCategories } from '../config/techCategories.js';
-import { fastSin, fastCos, fastSqrt } from '../utils/mathCache.js';
-import { acquireConnection, releaseConnection, initializeCommonPools } from '../utils/objectPool.js';
+import { fastSin, fastCos, fastSqrt } from '../utils/simpleMath.js';
+import { acquireConnection, releaseConnection, initializeCommonPools } from '../utils/simplePool.js';
+import { getCachedColor, getPooledRandom, getCachedTime, getParticleColor, fastSinCached, fastCosCached } from '../utils/performanceOptimizations.js';
 import '../styles/pages/HomePage.css';
 import '../styles/pages/TechShowcasePage.css';
 
@@ -56,8 +57,8 @@ const TechSection = memo(() => {
     });
     if (!ctx) return;
 
-    let animationId;
-    let particles = [];
+    let mainAnimationId;
+    let mainParticles = [];
     let onMobile = window.innerWidth < 768;
 
     let isTabVisible = true;
@@ -77,12 +78,11 @@ const TechSection = memo(() => {
     const handleVisibilityChange = () => {
       isTabVisible = !document.hidden;
       if (!isTabVisible) {
-        cancelAnimationFrame(animationId);
+        cancelAnimationFrame(mainAnimationId);
       } else {
         draw();
       }
     };
-    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     initializeCommonPools();
 
@@ -133,8 +133,8 @@ const TechSection = memo(() => {
     class Particle {
       constructor(index) {
         this.x = index * (window.innerWidth / particleNum);
-        this.y = Math.random() * window.innerHeight;
-        this.vy = (Math.random() * -1) / 3;
+        this.y = getPooledRandom() * window.innerHeight;
+        this.vy = (getPooledRandom() * -1) / 3;
         this.radius = 1.5;
         this.innerRadius = 0.9;
         this.intX = Math.round(this.x);
@@ -151,9 +151,9 @@ const TechSection = memo(() => {
     }
 
     const initParticles = () => {
-      particles = [];
+      mainParticles = [];
       for (let i = 0; i < particleNum; i++) {
-        particles.push(new Particle(i));
+        mainParticles.push(new Particle(i));
       }
     };
 
@@ -176,19 +176,19 @@ const TechSection = memo(() => {
       const dx = (Math.PI * 2) / particleNum;
       frameCount++;
 
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
+      for (let i = 0; i < mainParticles.length; i++) {
+        const p = mainParticles[i];
 
         if (!onMobile) {
           const waveOffset = i * dx;
           const speedVariation = 1 + (i % 3) * 0.2;
 
           if (i % 3 === 0) {
-            p.y = window.innerHeight * 0.3 + fastSin(theta * speedVariation + waveOffset) * amplitude;
+            p.y = window.innerHeight * 0.3 + fastSinCached(theta * speedVariation + waveOffset) * amplitude;
           } else if (i % 3 === 1) {
-            p.y = window.innerHeight * 0.5 + fastCos(theta * speedVariation + waveOffset) * amplitude * 0.8;
+            p.y = window.innerHeight * 0.5 + fastCosCached(theta * speedVariation + waveOffset) * amplitude * 0.8;
           } else {
-            p.y = window.innerHeight * 0.7 + fastSin(theta * speedVariation + waveOffset + Math.PI/3) * amplitude * 0.6;
+            p.y = window.innerHeight * 0.7 + fastSinCached(theta * speedVariation + waveOffset + Math.PI/3) * amplitude * 0.6;
           }
         } else {
           p.y += p.vy;
@@ -212,12 +212,12 @@ const TechSection = memo(() => {
       }
       activeConnections = [];
 
-      const len = particles.length;
+      const len = mainParticles.length;
       for (let i = 0; i < len && activeConnections.length < MAX_CONNECTIONS; i++) {
-        const p1 = particles[i];
+        const p1 = mainParticles[i];
 
         for (let j = i + 1; j < len && activeConnections.length < MAX_CONNECTIONS; j++) {
-          const p2 = particles[j];
+          const p2 = mainParticles[j];
 
           const dx = p1.x - p2.x;
           const dy = p1.y - p2.y;
@@ -253,7 +253,7 @@ const TechSection = memo(() => {
       }
 
       if (currentTime - lastRenderTime < TARGET_FRAME_TIME) {
-        animationId = requestAnimationFrame(draw);
+        mainAnimationId = requestAnimationFrame(draw);
         return;
       }
       lastRenderTime = currentTime;
@@ -273,8 +273,8 @@ const TechSection = memo(() => {
 
       ctx.fillStyle = PARTICLE_OUTER_COLOR;
       ctx.beginPath();
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
+      for (let i = 0; i < mainParticles.length; i++) {
+        const p = mainParticles[i];
         ctx.moveTo(p.intX + p.radius, p.intY);
         ctx.arc(p.intX, p.intY, p.radius, 0, Math.PI * 2);
       }
@@ -282,8 +282,8 @@ const TechSection = memo(() => {
 
       ctx.fillStyle = PARTICLE_INNER_COLOR;
       ctx.beginPath();
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
+      for (let i = 0; i < mainParticles.length; i++) {
+        const p = mainParticles[i];
         ctx.moveTo(p.intX + p.innerRadius, p.intY);
         ctx.arc(p.intX, p.intY, p.innerRadius, 0, Math.PI * 2);
       }
@@ -307,7 +307,7 @@ const TechSection = memo(() => {
       }
 
       update();
-      animationId = requestAnimationFrame(draw);
+      mainAnimationId = requestAnimationFrame(draw);
     };
 
     const handleResize = () => {
@@ -321,19 +321,20 @@ const TechSection = memo(() => {
     };
 
     window.addEventListener('resize', handleResize);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     draw();
 
     return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-        animationId = null;
+      if (mainAnimationId) {
+        cancelAnimationFrame(mainAnimationId);
+        mainAnimationId = null;
       }
 
       window.removeEventListener('resize', handleResize);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
 
-      particles.length = 0;
-      particles = null;
+      mainParticles.length = 0;
+      mainParticles = null;
 
       for (const conn of activeConnections) {
         releaseConnection(conn);
@@ -637,8 +638,8 @@ const TechSummarySection = memo(() => {
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
-    let particles = [];
-    let animationId;
+    let techParticles = [];
+    let techAnimationId;
 
     // 设置canvas尺寸
     const resizeCanvas = () => {
@@ -657,20 +658,26 @@ const TechSummarySection = memo(() => {
     class Particle {
       constructor() {
         this.reset();
-        this.y = Math.random() * canvas.height;
-        this.fadeDelay = Math.random() * 600 + 100;
-        this.fadeStart = Date.now() + this.fadeDelay;
+        this.y = getPooledRandom() * canvas.height;
+        this.fadeDelay = getPooledRandom() * 600 + 100;
+        this.fadeStart = getCachedTime() + this.fadeDelay;
         this.fadingOut = false;
+        // Pre-calculate random values to eliminate RAF calculations
+        this.colorVariation = getPooledRandom();
+        this.sizeVariation = getPooledRandom() * 2 + 1;
       }
 
       reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.speed = Math.random() / 5 + 0.1;
+        this.x = getPooledRandom() * canvas.width;
+        this.y = getPooledRandom() * canvas.height;
+        this.speed = getPooledRandom() / 5 + 0.1;
         this.opacity = 1;
-        this.fadeDelay = Math.random() * 600 + 100;
-        this.fadeStart = Date.now() + this.fadeDelay;
+        this.fadeDelay = getPooledRandom() * 600 + 100;
+        this.fadeStart = getCachedTime() + this.fadeDelay;
         this.fadingOut = false;
+        // Pre-calculate random values to eliminate RAF calculations
+        this.colorVariation = getPooledRandom();
+        this.sizeVariation = getPooledRandom() * 2 + 1;
       }
 
       update() {
@@ -679,7 +686,7 @@ const TechSummarySection = memo(() => {
           this.reset();
         }
 
-        if (!this.fadingOut && Date.now() > this.fadeStart) {
+        if (!this.fadingOut && getCachedTime() > this.fadeStart) {
           this.fadingOut = true;
         }
 
@@ -692,28 +699,29 @@ const TechSummarySection = memo(() => {
       }
 
       draw() {
-        ctx.fillStyle = `rgba(${255 - (Math.random() * 255/2)}, 255, 255, ${this.opacity})`;
-        ctx.fillRect(this.x, this.y, 0.4, Math.random() * 2 + 1);
+        // Fixed: Pre-calculated values to eliminate string creation in RAF loop
+        ctx.fillStyle = getParticleColor(this.opacity, this.colorVariation || 0.5);
+        ctx.fillRect(this.x, this.y, 0.4, this.sizeVariation || 1.5);
       }
     }
 
     // 初始化粒子
     const initParticles = () => {
-      particles = [];
+      techParticles = [];
       const particleCount = calculateParticleCount();
       for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
+        techParticles.push(new Particle());
       }
     };
 
     // 动画循环
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(particle => {
+      techParticles.forEach(particle => {
         particle.update();
         particle.draw();
       });
-      animationId = requestAnimationFrame(animate);
+      techAnimationId = requestAnimationFrame(animate);
     };
 
     // 窗口大小改变处理
@@ -729,8 +737,8 @@ const TechSummarySection = memo(() => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      if (animationId) {
-        cancelAnimationFrame(animationId);
+      if (techAnimationId) {
+        cancelAnimationFrame(techAnimationId);
       }
     };
   }, []);
@@ -784,8 +792,8 @@ const HomePage = () => {
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
-    let particles = [];
-    let animationId;
+    let homeParticles = [];
+    let homeAnimationId;
 
     // 设置canvas尺寸
     const resizeCanvas = () => {
@@ -804,20 +812,26 @@ const HomePage = () => {
     class Particle {
       constructor() {
         this.reset();
-        this.y = Math.random() * canvas.height;
-        this.fadeDelay = Math.random() * 600 + 100;
-        this.fadeStart = Date.now() + this.fadeDelay;
+        this.y = getPooledRandom() * canvas.height;
+        this.fadeDelay = getPooledRandom() * 600 + 100;
+        this.fadeStart = getCachedTime() + this.fadeDelay;
         this.fadingOut = false;
+        // Pre-calculate random values to eliminate RAF calculations
+        this.colorVariation = getPooledRandom();
+        this.sizeVariation = getPooledRandom() * 2 + 1;
       }
 
       reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.speed = Math.random() / 5 + 0.1;
+        this.x = getPooledRandom() * canvas.width;
+        this.y = getPooledRandom() * canvas.height;
+        this.speed = getPooledRandom() / 5 + 0.1;
         this.opacity = 1;
-        this.fadeDelay = Math.random() * 600 + 100;
-        this.fadeStart = Date.now() + this.fadeDelay;
+        this.fadeDelay = getPooledRandom() * 600 + 100;
+        this.fadeStart = getCachedTime() + this.fadeDelay;
         this.fadingOut = false;
+        // Pre-calculate random values to eliminate RAF calculations
+        this.colorVariation = getPooledRandom();
+        this.sizeVariation = getPooledRandom() * 2 + 1;
       }
 
       update() {
@@ -826,7 +840,7 @@ const HomePage = () => {
           this.reset();
         }
 
-        if (!this.fadingOut && Date.now() > this.fadeStart) {
+        if (!this.fadingOut && getCachedTime() > this.fadeStart) {
           this.fadingOut = true;
         }
 
@@ -839,28 +853,29 @@ const HomePage = () => {
       }
 
       draw() {
-        ctx.fillStyle = `rgba(${255 - (Math.random() * 255/2)}, 255, 255, ${this.opacity})`;
-        ctx.fillRect(this.x, this.y, 0.4, Math.random() * 2 + 1);
+        // Fixed: Pre-calculated values to eliminate string creation in RAF loop
+        ctx.fillStyle = getParticleColor(this.opacity, this.colorVariation || 0.5);
+        ctx.fillRect(this.x, this.y, 0.4, this.sizeVariation || 1.5);
       }
     }
 
     // 初始化粒子
     const initParticles = () => {
-      particles = [];
+      homeParticles = [];
       const particleCount = calculateParticleCount();
       for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
+        homeParticles.push(new Particle());
       }
     };
 
     // 动画循环
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(particle => {
+      homeParticles.forEach(particle => {
         particle.update();
         particle.draw();
       });
-      animationId = requestAnimationFrame(animate);
+      homeAnimationId = requestAnimationFrame(animate);
     };
 
     // 窗口大小改变处理
@@ -876,8 +891,8 @@ const HomePage = () => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      if (animationId) {
-        cancelAnimationFrame(animationId);
+      if (homeAnimationId) {
+        cancelAnimationFrame(homeAnimationId);
       }
     };
   }, []);

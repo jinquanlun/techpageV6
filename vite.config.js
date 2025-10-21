@@ -31,17 +31,15 @@ export default defineConfig({
 
           // 页面组件分包
           pages: [
-            './src/pages/TechShowcasePage.jsx',
             './src/pages/HPHDetailPage.jsx',
             './src/pages/PEFDetailPage.jsx'
           ],
 
           // 工具类分包
           utils: [
-            './src/utils/mathCache.js',
-            './src/utils/objectPool.js',
-            './src/utils/spatialPartitioning.js',
-            './src/utils/dirtyMarking.js'
+            './src/utils/simpleMath.js',
+            './src/utils/simplePool.js',
+            './src/utils/performanceOptimizations.js'
           ]
         },
 
