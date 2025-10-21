@@ -253,15 +253,16 @@ button.contact-btn:hover .glow::before {
 /* 聚光灯效果 */
 .header .spotlight {
   pointer-events: none;
-  position: absolute;
+  position: fixed; /* 改为position: fixed，确保始终相对于视口 */
   left: 0;
   right: 0;
   top: -2em;
   margin: 0 auto;
   transition: filter 1s ease-in-out;
-  height: 48em;
+  height: 208vh; /* 进一步增加高度 */
   width: 100%;
   overflow: hidden;
+  z-index: 0; /* 确保在所有内容之下 */
 }
 
 .header .spotlight > div {
@@ -272,7 +273,7 @@ button.contact-btn:hover .glow::before {
   margin: 0 auto;
   top: 5em;
   width: 35em;
-  height: max(45em, 90vh);
+  height: max(250vh, 200em); /* 进一步增加子div高度 */
   background-image: conic-gradient(from 0deg at 50% -5%, transparent 45%, rgba(235, 227, 199, .3) 49%, rgba(235, 227, 199, .5) 50%, rgba(235, 227, 199, .3) 51%, transparent 55%);
   transform-origin: 50% 0;
   filter: blur(15px) opacity(0.4);
@@ -290,11 +291,24 @@ button.contact-btn:hover .glow::before {
   animation: load 2s ease-in-out forwards, loadrot 2s ease-in-out forwards, spotlight 14s ease-in-out infinite;
 }
 
-/* 聚光灯在技术页面时隐藏 */
+/* 聚光灯在技术页面时调整 - 降低强度但保持可见 */
 .home-page.in-tech-section .header .spotlight {
-  opacity: 0 !important;
+  opacity: 0.25 !important; /* 降低透明度，让它更柔和 */
   pointer-events: none !important;
   transition: opacity 0.3s ease !important;
+  z-index: 1 !important; /* 确保在tech内容之下 */
+}
+
+/* 在tech页面时调整聚光灯颜色，更匹配Chrome Grey主题 */
+.home-page.in-tech-section .header .spotlight > div {
+  background-image: conic-gradient(from 0deg at 50% -5%,
+    transparent 45%,
+    rgba(195, 189, 160, .15) 49%,
+    rgba(195, 189, 160, .2) 50%,
+    rgba(195, 189, 160, .15) 51%,
+    transparent 55%) !important; /* 使用更淡的香槟色调 */
+  border-radius: 0 0 80% 80% !important; /* 更柔和的底部圆角，减少边界感 */
+  filter: blur(20px) opacity(0.3) !important; /* 增加模糊度，减少硬边界 */
 }
 
 @keyframes loadrot {
