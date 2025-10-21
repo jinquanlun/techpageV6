@@ -499,7 +499,7 @@ const TechSection = memo(() => {
               <div className="skw-page__skewed">
                 <div className="skw-page__content">
                   <p className="skw-page__description">
-                    镶鲜科技专注于冷链食材保鲜技术，
+                    鎏鲜科技专注于冷链食材保鲜技术，
                     <br />
                     融合冰温保鲜、纳米微晶、超冷冰沙与全冷链系统
                     <br />
@@ -611,8 +611,152 @@ const TechSection = memo(() => {
   );
 });
 
+// 技术总结页面组件
+const TechSummarySection = memo(() => {
+  const canvasRef = useRef(null);
+
+  // 粒子动画系统（复用HomePage的粒子系统）
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animationId;
+
+    // 设置canvas尺寸
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    resizeCanvas();
+
+    // 计算粒子数量
+    const calculateParticleCount = () => {
+      return Math.floor((canvas.width * canvas.height) / 6000);
+    };
+
+    // 粒子类
+    class Particle {
+      constructor() {
+        this.reset();
+        this.y = Math.random() * canvas.height;
+        this.fadeDelay = Math.random() * 600 + 100;
+        this.fadeStart = Date.now() + this.fadeDelay;
+        this.fadingOut = false;
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.speed = Math.random() / 5 + 0.1;
+        this.opacity = 1;
+        this.fadeDelay = Math.random() * 600 + 100;
+        this.fadeStart = Date.now() + this.fadeDelay;
+        this.fadingOut = false;
+      }
+
+      update() {
+        this.y -= this.speed;
+        if (this.y < 0) {
+          this.reset();
+        }
+
+        if (!this.fadingOut && Date.now() > this.fadeStart) {
+          this.fadingOut = true;
+        }
+
+        if (this.fadingOut) {
+          this.opacity -= 0.008;
+          if (this.opacity <= 0) {
+            this.reset();
+          }
+        }
+      }
+
+      draw() {
+        ctx.fillStyle = `rgba(${255 - (Math.random() * 255/2)}, 255, 255, ${this.opacity})`;
+        ctx.fillRect(this.x, this.y, 0.4, Math.random() * 2 + 1);
+      }
+    }
+
+    // 初始化粒子
+    const initParticles = () => {
+      particles = [];
+      const particleCount = calculateParticleCount();
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    };
+
+    // 动画循环
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      animationId = requestAnimationFrame(animate);
+    };
+
+    // 窗口大小改变处理
+    const handleResize = () => {
+      resizeCanvas();
+      initParticles();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    initParticles();
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+  }, []);
+
+  return (
+    <div className="tech-summary-section">
+      {/* 粒子画布 */}
+      <canvas ref={canvasRef} className="tech-summary-canvas"></canvas>
+
+      {/* 装饰线条 - 仿照HomePage的accent-lines */}
+      <div className="summary-accent-lines">
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+
+      {/* 主要内容 */}
+      <div className="tech-summary-content">
+        <div className="summary-text-container">
+          <div className="summary-text-line">在PRISM瓴境双核技术的协同赋能下</div>
+          <div className="summary-text-line">既攻克了 高品质短保产品 的多个瓶颈</div>
+          <div className="summary-text-line">保质期·损耗·成本</div>
+          <div className="summary-text-line">同时又赋予了产品和品牌全新维度的</div>
+          <div className="summary-text-line">可能性·生命力·竞争力·影响力</div>
+          <div className="summary-text-line summary-bottom-line">为您构建起难以逾越的技术壁垒</div>
+        </div>
+      </div>
+    </div>
+  );
+});
+
 const HomePage = () => {
-  const navigate = useNavigate();
   const canvasRef = useRef(null);
   const [isGoldMode, setIsGoldMode] = useState(false);
   const [isInTechSection, setIsInTechSection] = useState(false);
@@ -721,16 +865,29 @@ const HomePage = () => {
     };
   }, []);
 
-  // 检测是否在技术展示区域
+  // 检测是否在技术展示区域或技术总结区域
   useEffect(() => {
     const handleScroll = () => {
       const techSection = document.querySelector('.tech-section');
+      const summarySection = document.querySelector('.tech-summary-section');
+
+      let isInSpecialSection = false;
+
       if (techSection) {
-        const rect = techSection.getBoundingClientRect();
-        // 当技术展示区域出现在视口中时隐藏spotlight
-        const isVisible = rect.top <= window.innerHeight * 0.8 && rect.bottom >= 0;
-        setIsInTechSection(isVisible);
+        const techRect = techSection.getBoundingClientRect();
+        // 当技术展示区域出现在视口中时调整spotlight
+        const techVisible = techRect.top <= window.innerHeight * 0.8 && techRect.bottom >= 0;
+        if (techVisible) isInSpecialSection = true;
       }
+
+      if (summarySection) {
+        const summaryRect = summarySection.getBoundingClientRect();
+        // 当技术总结区域出现在视口中时继续显示spotlight（但调整样式）
+        const summaryVisible = summaryRect.top <= window.innerHeight * 0.8 && summaryRect.bottom >= 0;
+        if (summaryVisible) isInSpecialSection = true;
+      }
+
+      setIsInTechSection(isInSpecialSection);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -770,14 +927,12 @@ const HomePage = () => {
           <span className="contact-btn-content">技术展示</span>
         </button>
 
-        {/* 聚光灯效果 - 在技术展示区域时隐藏 */}
-        {!isInTechSection && (
-          <div className="spotlight">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        )}
+        {/* 聚光灯效果 - 从第一页照到第三页 */}
+        <div className="spotlight">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
 
       {/* 粒子画布 */}
@@ -817,7 +972,7 @@ const HomePage = () => {
         <div className="text-line">革新产品全球竞争力</div>
         <div className="text-line">我们拥有2项世界领先的专利技术</div>
         <div className="text-line">它们并非普通的量变工具</div>
-        <div className="text-line">而是能够实现从 <span className="highlight">产品力本质</span> 到 <span className="highlight">商业模式</span></div>
+        <div className="text-line">而是能够实现从产品力本质到商业模式</div>
         <div className="text-line"><span>价值重塑+规则重构</span>的质变武器</div>
         <div className="text-line bottom-line">
           <span className="glow-text">穿越周期·双核无界</span>
@@ -830,6 +985,9 @@ const HomePage = () => {
 
       {/* 技术展示区域 */}
       <TechSection />
+
+      {/* 第三页 - 技术总结页面 */}
+      <TechSummarySection />
     </div>
   );
 };

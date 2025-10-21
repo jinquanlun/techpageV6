@@ -259,7 +259,7 @@ button.contact-btn:hover .glow::before {
   top: -2em;
   margin: 0 auto;
   transition: filter 1s ease-in-out;
-  height: 208vh; /* 进一步增加高度 */
+  height: 310vh; /* 大幅增加高度，确保覆盖第三页 */
   width: 100%;
   overflow: hidden;
   z-index: 0; /* 确保在所有内容之下 */
@@ -273,7 +273,7 @@ button.contact-btn:hover .glow::before {
   margin: 0 auto;
   top: 5em;
   width: 35em;
-  height: max(250vh, 200em); /* 进一步增加子div高度 */
+  height: max(200vh, 200em); /* 大幅增加子div高度，确保覆盖第三页 */
   background-image: conic-gradient(from 0deg at 50% -5%, transparent 45%, rgba(235, 227, 199, .3) 49%, rgba(235, 227, 199, .5) 50%, rgba(235, 227, 199, .3) 51%, transparent 55%);
   transform-origin: 50% 0;
   filter: blur(15px) opacity(0.4);
@@ -291,24 +291,26 @@ button.contact-btn:hover .glow::before {
   animation: load 2s ease-in-out forwards, loadrot 2s ease-in-out forwards, spotlight 14s ease-in-out infinite;
 }
 
-/* 聚光灯在技术页面时调整 - 降低强度但保持可见 */
+/* 聚光灯在技术页面时调整 - 降低强度但保持可见，延伸到第三页 */
 .home-page.in-tech-section .header .spotlight {
-  opacity: 0.25 !important; /* 降低透明度，让它更柔和 */
+  opacity: 0.15 !important; /* 进一步降低透明度，让它更柔和 */
   pointer-events: none !important;
   transition: opacity 0.3s ease !important;
   z-index: 1 !important; /* 确保在tech内容之下 */
+  height: 100vh !important; /* 大幅增加高度，覆盖到第三页 */
 }
 
 /* 在tech页面时调整聚光灯颜色，更匹配Chrome Grey主题 */
 .home-page.in-tech-section .header .spotlight > div {
   background-image: conic-gradient(from 0deg at 50% -5%,
     transparent 45%,
-    rgba(195, 189, 160, .15) 49%,
-    rgba(195, 189, 160, .2) 50%,
-    rgba(195, 189, 160, .15) 51%,
+    rgba(195, 189, 160, .08) 49%,
+    rgba(195, 189, 160, .12) 50%,
+    rgba(195, 189, 160, .08) 51%,
     transparent 55%) !important; /* 使用更淡的香槟色调 */
   border-radius: 0 0 80% 80% !important; /* 更柔和的底部圆角，减少边界感 */
-  filter: blur(20px) opacity(0.3) !important; /* 增加模糊度，减少硬边界 */
+  filter: blur(25px) opacity(0.2) !important; /* 增加模糊度，减少硬边界 */
+  height: max(50vh, 50em) !important; /* 确保子div也延伸到第三页 */
 }
 
 @keyframes loadrot {
@@ -397,7 +399,7 @@ p {
   font-weight: 600;
   color: #f8f6f0;
   line-height: 1.15;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.35em;
   text-align: center;
   background:
     radial-gradient(2em 2em at 50% 50%,
@@ -471,8 +473,10 @@ p {
   -webkit-text-fill-color: transparent;
   line-height: 1.8;
   margin: 0.9em 0;
-  font-weight: 400;
+  font-weight: 500;
   padding: 0 4em;
+  letter-spacing: 0.35em;
+  font-family: 'Noto Serif SC', 'SimSun', '宋体', serif;
 }
 
 .text-line.bottom-line {
@@ -909,3 +913,180 @@ p {
     font-size: 1.1em;
   }
 }
+
+/* ===========================================
+   技术总结页面样式 (第三页)
+   =========================================== */
+.tech-summary-section {
+  height: 100vh;
+  min-height: 50vh;
+  position: relative;
+  background: #141416 linear-gradient(0deg, rgba(235, 227, 199,.06), rgba(235, 227, 199,.06));
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.tech-summary-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.tech-summary-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 90em;
+  text-align: center;
+  padding: 0 2em;
+}
+
+.summary-text-container {
+  opacity: 0;
+  translate: 0 1em;
+  animation: load 2s ease-out 1s forwards, up 1.4s ease-out 1s forwards;
+}
+
+.summary-text-line {
+  font-size: 1.4em;
+  color: #fbfaf8;
+  text-shadow: 0 2px 16px rgba(232, 224, 202,.24);
+  background: linear-gradient(0deg, #fbfaf8 0, #f0eadb 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.8;
+  margin: 1.5em 0;
+  font-weight: 500;
+  padding: 0 4em;
+  white-space: nowrap;
+  font-family: 'Noto Serif SC', 'SimSun', '宋体', serif;
+  min-width: fit-content;
+  overflow: visible;
+  letter-spacing: 0.35em;
+}
+
+.summary-text-line.summary-bottom-line {
+  margin-top: 2.5em;
+  margin-bottom: 2em;
+  font-weight: 500;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .summary-text-line {
+    font-size: 1.1em;
+    padding: 0 1em;
+    white-space: normal;
+    line-height: 1.6;
+    margin: 0.8em 0;
+  }
+
+  .tech-summary-content {
+    padding: 0 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .summary-text-line {
+    font-size: 1em;
+    padding: 0 0.5em;
+    margin: 0.6em 0;
+  }
+}
+
+/* 第三页装饰线条样式 */
+.summary-accent-lines {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 42em;
+  z-index: 2;
+  --summary-accent-lines-clr: rgba(240, 234, 219, .25);
+}
+
+.summary-accent-lines > div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+}
+
+.summary-accent-lines > div:nth-child(1) > div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--summary-accent-lines-clr), transparent);
+  opacity: 0;
+  scale: 0;
+  animation: accentload 2s ease-out 1.5s forwards;
+}
+
+.summary-accent-lines > div:nth-child(1) > div:nth-child(1) { top: 8em; }
+.summary-accent-lines > div:nth-child(1) > div:nth-child(2) { top: 12em; }
+.summary-accent-lines > div:nth-child(1) > div:nth-child(3) { top: 19.5em; }
+.summary-accent-lines > div:nth-child(1) > div:nth-child(4) { top: 39.5em; }
+.summary-accent-lines > div:nth-child(1) > div:nth-child(5) { top: 46em; }
+
+.summary-accent-lines > div:nth-child(2) > div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 1px;
+  height: 100%;
+  background: var(--summary-accent-lines-clr);
+  opacity: 0;
+  scale: 0;
+  animation: accentload 2s ease-out 1.8s forwards;
+}
+
+.summary-accent-lines > div:nth-child(2) > div:nth-child(1) { left: 40em; }
+.summary-accent-lines > div:nth-child(2) > div:nth-child(2) { left: 60em; }
+.summary-accent-lines > div:nth-child(2) > div:nth-child(3) { right: 40em; }
+.summary-accent-lines > div:nth-child(2) > div:nth-child(4) { right: 60em; }
+
+/* 装饰点 */
+.summary-accent-lines > div:nth-child(1) > div::before,
+.summary-accent-lines > div:nth-child(1) > div::after {
+  content: '';
+  display: none;
+  position: absolute;
+  width: 0.15em;
+  height: 0.15em;
+  border-radius: 1em;
+  background: #eae2c8;
+  left: 0;
+  right: 0;
+  margin: auto;
+  translate: 0 -1px;
+  opacity: 0;
+  scale: 0;
+  animation: accentload 2s ease-out 2.2s forwards;
+}
+
+.summary-accent-lines > div:nth-child(1) > div:nth-child(3)::before { display: block; left: 32em; }
+.summary-accent-lines > div:nth-child(1) > div:nth-child(3)::after { display: block; right: 32em; }
+.summary-accent-lines > div:nth-child(1) > div:nth-child(4)::before { display: block; left: 32em; }
+.summary-accent-lines > div:nth-child(1) > div:nth-child(4)::after { display: block; right: 32em; }
+.summary-accent-lines > div:nth-child(1) > div:nth-child(5)::before { display: block; left: 32em; }
+.summary-accent-lines > div:nth-child(1) > div:nth-child(5)::after { display: block; right: 32em; }
