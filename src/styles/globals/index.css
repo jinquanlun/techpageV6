@@ -18,6 +18,16 @@
   box-sizing: border-box;
 }
 
+/* 隐藏所有滚动条 */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 body, html {
   width: 100%;
   height: 100%;
@@ -26,6 +36,13 @@ body, html {
   font-family: 'Microsoft YaHei UI', '微软雅黑', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   font-weight: 400;
   line-height: 1.6;
+  /* 确保滚动条隐藏 */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar, html::-webkit-scrollbar {
+  display: none;
 }
 
 #root {

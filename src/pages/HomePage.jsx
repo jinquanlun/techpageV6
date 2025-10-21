@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, memo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { hphCategories, pefCategories } from '../config/techCategories.js';
 import { fastSin, fastCos, fastSqrt } from '../utils/mathCache.js';
 import { acquireConnection, releaseConnection, initializeCommonPools } from '../utils/objectPool.js';
@@ -9,6 +9,7 @@ import '../styles/pages/TechShowcasePage.css';
 // 技术展示组件
 const TechSection = memo(() => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [focusedSection, setFocusedSection] = useState('pef');
   const [scrolling, setScrolling] = useState(false);
   const [internalStep, setInternalStep] = useState(0);
@@ -27,6 +28,21 @@ const TechSection = memo(() => {
 
   const animTime = 2000;
   const canvasRef = useRef(null);
+
+  // 处理从详情页返回时的导航状态
+  useEffect(() => {
+    const state = location.state;
+    // 只有从详情页返回时才更新状态
+    if (state?.targetSection && state?.fromDetailPage) {
+      setFocusedSection(state.targetSection);
+      // 根据targetSection设置正确的internalStep
+      if (state.targetSection === 'hph') {
+        setInternalStep(1);
+      } else if (state.targetSection === 'pef') {
+        setInternalStep(0);
+      }
+    }
+  }, [location.state]);
 
   // 粒子动画系统（简化版）
   useEffect(() => {
@@ -744,7 +760,7 @@ const TechSummarySection = memo(() => {
       {/* 主要内容 */}
       <div className="tech-summary-content">
         <div className="summary-text-container">
-          <div className="summary-text-line">在PRISM瓴境双核技术的协同赋能下</div>
+          <div className="summary-text-line">在PRïSM瓴境双核技术的协同赋能下</div>
           <div className="summary-text-line">既攻克了 高品质短保产品 的多个瓶颈</div>
           <div className="summary-text-line">保质期·损耗·成本</div>
           <div className="summary-text-line">同时又赋予了产品和品牌全新维度的</div>
@@ -758,6 +774,7 @@ const TechSummarySection = memo(() => {
 
 const HomePage = () => {
   const canvasRef = useRef(null);
+  const location = useLocation();
   const [isGoldMode, setIsGoldMode] = useState(false);
   const [isInTechSection, setIsInTechSection] = useState(false);
 
@@ -898,6 +915,25 @@ const HomePage = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  // 处理从详情页返回时的自动滚动
+  useEffect(() => {
+    const state = location.state;
+    // 只有当有targetSection且来自详情页时才滚动
+    if (state?.targetSection && state?.fromDetailPage) {
+      // 延迟滚动，确保页面已经渲染完成
+      const timer = setTimeout(() => {
+        const techSection = document.querySelector('.tech-section');
+        if (techSection) {
+          techSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        // 清除状态，避免重复触发
+        window.history.replaceState(null, '', location.pathname);
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [location.state]);
 
   const toggleGoldMode = () => {
     setIsGoldMode(!isGoldMode);

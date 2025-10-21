@@ -25,7 +25,7 @@ function HPHDetailPage() {
 
   const handleBack = () => {
     // 回到主页，但会到达技术展示页面（第二页）而不是最后一页
-    navigate('/', { state: { targetSection: 'hph' } });
+    navigate('/', { state: { targetSection: 'hph', fromDetailPage: true } });
   };
 
   return (

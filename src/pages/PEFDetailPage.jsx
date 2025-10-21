@@ -25,7 +25,7 @@ function PEFDetailPage() {
 
   const handleBack = () => {
     // 回到主页，但会到达技术展示页面（第二页）PEF部分而不是最后一页
-    navigate('/', { state: { targetSection: 'pef' } });
+    navigate('/', { state: { targetSection: 'pef', fromDetailPage: true } });
   };
 
   return (
