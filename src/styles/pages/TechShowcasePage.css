@@ -273,8 +273,8 @@
 }
 
 .skw-page__half--left .skw-page__content {
-  padding-left: 30%;  /* 减小左边距 */
-  padding-right: 30%; /* 减小右边距，给标题更多空间 */
+  padding-left: 30%;  /* 增加左边距，让左边文字向右移 */
+  padding-right: 30%; /* 适当减小右边距 */
   transform-origin: 100% 0;
   align-items: flex-start;
   justify-content: center;
@@ -282,8 +282,8 @@
 }
 
 .skw-page__half--right .skw-page__content {
-  padding-left: 30%;  /* 减小左边距，给文字更多空间 */
-  padding-right: 15%; /* 进一步减小右边距，增加容器宽度 */
+  padding-left: 30%;  /* 减小左边距，让右边文字向左移 */
+  padding-right: 30%; /* 增加右边距，让文字不要太靠近右边缘 */
   transform-origin: 0 100%;
   padding-top: 43px;  /* 添加上边距，让右侧文字与左侧标题齐平 */
 }
@@ -812,12 +812,12 @@
 
 /* 左侧内容特殊样式 */
 .detail-page__half--left .detail-page__content {
-  padding: 5% 8% 5% 20%;
+  padding: 5% 0% 5% 20%;  /* 增加左边距，让左边文字向右移 */
 }
 
 /* 右侧内容特殊样式 */
 .detail-page__half--right .detail-page__content {
-  padding: 5% 20% 5% 5%;
+  padding: 5% 25% 5% 0%;  /* 减小左边距，增加右边距，让右边文字向左移 */
   text-align: left;
   justify-content: center;
   align-items: center;

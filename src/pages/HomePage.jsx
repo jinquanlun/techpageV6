@@ -26,6 +26,7 @@ const TechSection = memo(() => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [currentVideoUrl, setCurrentVideoUrl] = useState('');
   const [currentVideoTitle, setCurrentVideoTitle] = useState('');
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const animTime = 2000;
   const canvasRef = useRef(null);
@@ -44,6 +45,16 @@ const TechSection = memo(() => {
       }
     }
   }, [location.state]);
+
+  // 监听屏幕尺寸变化
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // 粒子动画系统（简化版）
   useEffect(() => {
@@ -431,7 +442,7 @@ const TechSection = memo(() => {
                     <div className="title-line-2">纳米破碎·动态灭菌</div>
                   </h2>
                   <button className="tech-button" onClick={() => {
-                    setCurrentVideoUrl('/videos/hph-demo.mp4');
+                    setCurrentVideoUrl('/videos/hph-demo');
                     setCurrentVideoTitle('HPH 纳米破碎·动态灭菌技术演示');
                     setIsVideoOpen(true);
                   }}>
@@ -502,7 +513,7 @@ const TechSection = memo(() => {
                     <div className="title-line-2">超冰温·脉冲电场保鲜</div>
                   </h2>
                   <button className="tech-button" onClick={() => {
-                    setCurrentVideoUrl('/videos/pef-demo.mp4');
+                    setCurrentVideoUrl('/videos/pef-demo');
                     setCurrentVideoTitle('PEF 超冰温·脉冲电场保鲜技术演示');
                     setIsVideoOpen(true);
                   }}>
@@ -617,7 +628,30 @@ const TechSection = memo(() => {
               </button>
             </div>
             <div className="minimal-video-content">
-              <video controls autoPlay src={currentVideoUrl} className="minimal-video-player">
+              <video
+                key={currentVideoUrl} // Force re-render when video changes
+                controls
+                autoPlay
+                className="minimal-video-player"
+                preload="none"
+                playsInline
+                onLoadStart={() => console.log('Video loading:', isMobile ? 'mobile' : 'desktop', currentVideoUrl)}
+                onError={(e) => {
+                  console.warn('Video load error for:', e.target.src, e.target.error);
+                }}
+                onLoadedData={() => console.log('Video loaded successfully:', currentVideoUrl)}
+              >
+                {isMobile ? (
+                  <>
+                    <source src={`${currentVideoUrl}-mobile.webm`} type="video/webm" />
+                    <source src={`${currentVideoUrl}.mp4`} type="video/mp4" />
+                  </>
+                ) : (
+                  <>
+                    <source src={`${currentVideoUrl}.webm`} type="video/webm" />
+                    <source src={`${currentVideoUrl}.mp4`} type="video/mp4" />
+                  </>
+                )}
                 您的浏览器不支持视频播放。
               </video>
             </div>

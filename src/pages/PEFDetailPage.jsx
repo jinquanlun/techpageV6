@@ -133,7 +133,7 @@ function PEFDetailPage() {
               <h3>VB-N/PH/色度测试：鲜到鲜技术，15天仍保持一级鲜</h3>
               <p>新鲜羊肉和牛肉在贮藏过程中，不同工况下对于羊肉和牛肉的挥发性盐基氮、菌落总数和色泽的影响。</p>
               <div className="test-charts">
-                <OptimizedImage src="/images/pef-tech/vbn-test.png" alt="VB-N/PH/色度测试图表" />
+                <OptimizedImage src="/images/pef-tech/vbn-test.webp" alt="VB-N/PH/色度测试图表" />
               </div>
             </div>
 
@@ -143,11 +143,11 @@ function PEFDetailPage() {
               <div className="comparison-images">
                 <div className="comparison-group">
                   <h4>-4℃真空牛肉</h4>
-                  <OptimizedImage src="/images/pef-tech/beef-comparison.png" alt="牛肉15天保鲜效果对比" />
+                  <OptimizedImage src="/images/pef-tech/beef-comparison.webp" alt="牛肉15天保鲜效果对比" />
                 </div>
                 <div className="comparison-group">
                   <h4>-4℃真空羊肉</h4>
-                  <OptimizedImage src="/images/pef-tech/lamb-comparison.png" alt="羊肉15天保鲜效果对比" />
+                  <OptimizedImage src="/images/pef-tech/lamb-comparison.webp" alt="羊肉15天保鲜效果对比" />
                 </div>
               </div>
             </div>
@@ -185,7 +185,8 @@ function PEFDetailPage() {
                 </table>
               </div>
               <div className="airflow-diagrams">
-                <img src="/images/pef-tech/airflow-diagram.png" alt="送风方式对比图" />
+                {/* TODO: 添加送风方式对比图 - airflow-diagram.png 文件不存在 */}
+                {/* <img src="/images/pef-tech/airflow-diagram.png" alt="送风方式对比图" /> */}
               </div>
             </div>
 
