@@ -438,10 +438,10 @@ const TechSection = memo(() => {
               <div className="skw-page__skewed">
                 <div className="skw-page__content">
                   <h2 className="skw-page__heading">
-                    <div className="title-line-1">HPH</div>
-                    <div className="title-line-2">纳米破碎·动态灭菌</div>
+                    <div className="title-line-1">NNP</div> 
+                    <div className="title-line-2">超高压纳米破碎·HPH动态灭菌</div>
                   </h2>
-                  <button className="tech-button" onClick={() => {
+                  <button className="tech-button" onClick={() => { 
                     setCurrentVideoUrl('/videos/hph-demo');
                     setCurrentVideoTitle('HPH 纳米破碎·动态灭菌技术演示');
                     setIsVideoOpen(true);
@@ -509,7 +509,7 @@ const TechSection = memo(() => {
               <div className="skw-page__skewed">
                 <div className="skw-page__content">
                   <h2 className="skw-page__heading">
-                    <div className="title-line-1">PEF</div>
+                    <div className="title-line-1">鲜到鲜</div>
                     <div className="title-line-2">超冰温·脉冲电场保鲜</div>
                   </h2>
                   <button className="tech-button" onClick={() => {

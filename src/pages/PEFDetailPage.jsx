@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import OptimizedImage from '../components/common/OptimizedImage.jsx';
 import '../styles/pages/DetailPage.css';
 
 function PEFDetailPage() {
@@ -8,12 +7,10 @@ function PEFDetailPage() {
 
   // 确保页面加载时滚动到顶部
   useEffect(() => {
-    // 使用多种方法确保滚动到顶部
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
 
-    // 延迟执行以确保覆盖其他滚动行为
     const timer = setTimeout(() => {
       window.scrollTo(0, 0);
       document.documentElement.scrollTop = 0;
@@ -24,7 +21,6 @@ function PEFDetailPage() {
   }, []);
 
   const handleBack = () => {
-    // 回到主页，但会到达技术展示页面（第二页）PEF部分而不是最后一页
     navigate('/', { state: { targetSection: 'pef', fromDetailPage: true } });
   };
 
@@ -34,333 +30,415 @@ function PEFDetailPage() {
         <button onClick={handleBack} className="back-btn">←</button>
       </nav>
 
-      <main className="detail-content">
-        {/* Hero Section */}
-        <section className="hero-section">
-          <div className="hero-content">
-            <h1 className="hero-title">鎏鲜科技</h1>
-            <p className="hero-subtitle">PEF</p>
-            <div className="hero-description">
-              <p>15天一级鲜，重塑冷链保鲜标准</p>
-              <p>以鲜为尺，用科技锁住时间，让每一口食材如初摘般鲜活</p>
-            </div>
+      <main className="detail-content page-container">
+        {/* 第1段：封面/标题区 */}
+        <div className="header-badge">MDL 买点论实验室全球领先</div>
+        
+        <h1 className="main-title">鲜到鲜技术—冷链食材保鲜技术创新的方案</h1>
+        
+        <div className="cover-grid">
+          <div className="cover-item">
+            <img 
+              src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/8917c6de84515b8dcd5011a371ac99f705f17d05da471f0c5be2f87a6d9a497a.jpg" 
+              alt="冻眠冰温保鲜" 
+            />
+            <div className="cover-item-caption">冻眠冰温保鲜</div>
           </div>
-        </section>
-
-        {/* Pain Points */}
-        <section className="content-section">
-          <div className="section-header">
-            <h2>行业痛点</h2>
-            <div className="section-line"></div>
+          <div className="cover-item">
+            <img 
+              src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/f8484b903e0c271fd48428de578dae2902d12f02e90e8ecbfd077210fc22c9dd.jpg" 
+              alt="纳米晶展示柜" 
+            />
+            <div className="cover-item-caption">纳米晶展示柜</div>
           </div>
-          <div className="content-grid">
-            <div className="content-block">
-              <h3>保质期过短</h3>
-              <p>鲜啤、鲜肉等产品货架期极短，通常只有几天，导致销售半径受限，损耗率高。</p>
-            </div>
-            <div className="content-block">
-              <h3>冷链成本高昂</h3>
-              <p>全程低温冷链物流、专业设备和仓储投入巨大，成本最终转嫁给消费者。</p>
-            </div>
-            <div className="content-block">
-              <h3>品质易损耗</h3>
-              <p>温度波动破坏食材细胞结构，导致风味变差、营养流失。</p>
-            </div>
-            <div className="content-block">
-              <h3>服务要求严苛</h3>
-              <p>高品质生鲜的储存和处理需要专业设备和人员培训，增加运营难度。</p>
-            </div>
+          <div className="cover-item">
+            <img 
+              src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/f5cd85e9c49a186c96e59f15340fd30fb9fbea527b912f45232b41b813cd6669.jpg" 
+              alt="超冷冰沙柜" 
+            />
+            <div className="cover-item-caption">超冷冰沙柜</div>
           </div>
-        </section>
-
-        {/* Solution */}
-        <section className="content-section">
-          <div className="section-header">
-            <h2>解决方案</h2>
-            <div className="section-line"></div>
+          <div className="cover-item">
+            <img 
+              src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/f5636b136147baefe22c71ec38dfec1fe8f46be77c9297e0d511cf8fed75b9b7.jpg" 
+              alt="全冷链保鲜" 
+            />
+            <div className="cover-item-caption">全冷链保鲜</div>
           </div>
-          <div className="solution-content">
-            <div className="solution-highlight">
-              <h3>鎏鲜"鲜到鲜"全链路保鲜技术</h3>
-              <p>颠覆性的全链路技术解决方案，不仅延长保鲜期，更能重构供应链，大幅降低成本。</p>
+        </div>
+        
+        <div className="section-divider-thick"></div>
+        
+        {/* 第2段：产品核心价值介绍 */}
+        <h2 className="section-title">纳米微晶 + 冰温保鲜</h2>
+        <h3 className="section-subtitle">产品核心价值——鲜到鲜</h3>
+        
+        <div className="value-grid">
+          <div className="value-item">
+            <div className="value-header">
+              <div className="value-number">1</div>
+              <div className="value-label">冰温保鲜</div>
             </div>
-
-            <div className="advantages-grid">
-              <div className="advantage-item">
-                <h4>15天超长"一级鲜"</h4>
-                <p>突破行业极限的冰温抑菌保鲜技术，实现肉类、鱼、水果等食材长达15天的"一级鲜"保鲜周期。</p>
-                <span className="advantage-note">市场主流技术保鲜期多为7-10天</span>
-              </div>
-
-              <div className="advantage-item">
-                <h4>革命性"常温配送"</h4>
-                <p>独创的"工厂HPH处理 + 常温运输 + 终端智能冰温柜"新模式。</p>
-                <div className="process-steps">
-                  <div className="step">
-                    <span className="step-number">01</span>
-                    <span className="step-text">工厂端HPH预处理</span>
-                  </div>
-                  <div className="step">
-                    <span className="step-number">02</span>
-                    <span className="step-text">常温运输</span>
-                  </div>
-                  <div className="step">
-                    <span className="step-number">03</span>
-                    <span className="step-text">终端智能冰温柜</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="advantage-item">
-                <h4>锁住原鲜营养</h4>
-                <p>"冻眠冰温保鲜"与"纳米微晶"技术，有效抑制冰晶生成，保持食材细胞完整性。</p>
-                <span className="advantage-note">防止汁液流失，锁住原始风味、营养和口感</span>
-              </div>
-            </div>
+            <img 
+              src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/a3c8c223c767b9452b2cc6075fd8134df2c7858775faa7dc6c483b1f65f0d5b1.jpg" 
+              alt="冰温保鲜" 
+            />
           </div>
-        </section>
-
-
-        {/* Technical Validation */}
-        <section className="content-section">
-          <div className="section-header">
-            <h2>技术验证与测试</h2>
-            <div className="section-line"></div>
+          <div className="value-item">
+            <div className="value-header">
+              <div className="value-number">2</div>
+              <div className="value-label">纳米微晶</div>
+            </div>
+            <img 
+              src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/5b460da717d0927e27fa65307bc593cccf7f88642940cfcb113bdf937e359d93.jpg" 
+              alt="纳米微晶" 
+            />
           </div>
-
-          <div className="validation-content">
-            <div className="validation-item">
-              <h3>VB-N/PH/色度测试：鲜到鲜技术，15天仍保持一级鲜</h3>
-              <p>新鲜羊肉和牛肉在贮藏过程中，不同工况下对于羊肉和牛肉的挥发性盐基氮、菌落总数和色泽的影响。</p>
-              <div className="test-charts">
-                <OptimizedImage src="/images/pef-tech/vbn-test.webp" alt="VB-N/PH/色度测试图表" />
-              </div>
+          <div className="value-item">
+            <div className="value-header">
+              <div className="value-number">3</div>
+              <div className="value-label">超冷沙冰</div>
             </div>
-
-            <div className="validation-item">
-              <h3>15天保鲜效果实物对比</h3>
-              <p>-4℃真空组的羊肉和所有牛肉样品在贮藏期结束后保存软鲜态，结论为一级鲜肉标准，表明冰温保鲜处理的牛羊肉贮藏15d也能保持食用品质。</p>
-              <div className="comparison-images">
-                <div className="comparison-group">
-                  <h4>-4℃真空牛肉</h4>
-                  <OptimizedImage src="/images/pef-tech/beef-comparison.webp" alt="牛肉15天保鲜效果对比" />
-                </div>
-                <div className="comparison-group">
-                  <h4>-4℃真空羊肉</h4>
-                  <OptimizedImage src="/images/pef-tech/lamb-comparison.webp" alt="羊肉15天保鲜效果对比" />
-                </div>
-              </div>
-            </div>
+            <img 
+              src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/f2d272674b4177e0076a8828bce878461aa835c5a2ff937588c8868aff27f39d.jpg" 
+              alt="超冷沙冰" 
+            />
           </div>
-        </section>
-
-        {/* Competitive Comparison */}
-        <section className="content-section">
-          <div className="section-header">
-            <h2>竞品技术对比</h2>
-            <div className="section-line"></div>
+          <div className="value-item">
+            <div className="value-header">
+              <div className="value-number">4</div>
+              <div className="value-label">冷链赋能</div>
+            </div>
+            <img 
+              src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/59721ac8592febe9d153e695da30a6cfcaf2b5eea1ec9e93a3cd6c1db2b5761f.jpg" 
+              alt="冷链赋能" 
+            />
           </div>
-
-          <div className="comparison-content">
-            <div className="comparison-item">
-              <h3>技术方案差异对比</h3>
-              <div className="tech-comparison-table">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>维度</th>
-                      <th>恒磁养鲜</th>
-                      <th>3代微晶（双层微晶）</th>
-                      <th>2代微晶/AI抑霜冻</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>送风方式</td>
-                      <td>抽屉环绕风循环</td>
-                      <td>后部吹风</td>
-                      <td>顶部吹风</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className="airflow-diagrams">
-                {/* TODO: 添加送风方式对比图 - airflow-diagram.png 文件不存在 */}
-                {/* <img src="/images/pef-tech/airflow-diagram.png" alt="送风方式对比图" /> */}
-              </div>
-            </div>
-
-
-            <div className="comparison-item">
-              <h3>鲜到鲜VS海尔恒磁VS美的微晶：技术对比详表</h3>
-              <div className="detailed-comparison">
-                <img src="/images/pef-tech/tech-comparison.png" alt="详细技术对比表" />
-              </div>
-
-              <div className="comparison-summary">
-                <div className="summary-section">
-                  <h4>对标结果分析：</h4>
-                  <ul>
-                    <li>竞品测试标准更接近实际用户场景，我司测试标准要求80%负载为极端状态。竞品标准有参考价值。</li>
-                    <li>采用拉温段-回温段交替控温逻辑，在降温速率优势明显，但拉温段温度低，易造成局部食材过冻；海尔恒磁采用恒温控温逻辑，温度整体控制较均匀且稳定。</li>
-                  </ul>
-                </div>
-
-                <div className="summary-section">
-                  <h4>改善措施：</h4>
-                  <ul>
-                    <li>重新定义微晶技术要求（温度波动和均匀性）</li>
-                    <li>修订微晶保鲜测试方法（负载量和食材种类）</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+        </div>
+        
+        <div className="application-text">
+          <strong>鲜到鲜应用场景：</strong>DIY冰沙饮、冻眠一级鲜、无水快解冻、纳米晶鲜切… …全冷链赋能！
+        </div>
+        
+        <div className="app-scene-row-2">
+          <div className="app-scene-item">
+            <img 
+              src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/f3d861d588c1ce6c926a34f15335bb81cf577efee756f5b800bb67d5f1ba637f.jpg" 
+              alt="手摇千层雪" 
+            />
+            <div className="app-scene-caption">手摇千层雪</div>
           </div>
-        </section>
-
-        {/* Technical Advantages */}
-        <section className="content-section">
-          <div className="section-header">
-            <h2>技术优势总结</h2>
-            <div className="section-line"></div>
+          <div className="app-scene-item">
           </div>
-
-          <div className="advantages-summary">
-            <div className="advantage-highlight">
-              <h3>鲜到鲜技术核心价值</h3>
-              <p>鲜到鲜技术才能实现15天保持一级鲜，无需改变产品形态，实现真正的一级鲜保存。</p>
-            </div>
-
-            <div className="key-advantages">
-              <div className="advantage-card">
-                <h4>15天一级鲜</h4>
-                <p>突破行业极限，实现肉类、鱼、水果等食材长达15天的"一级鲜"保鲜周期</p>
-              </div>
-              <div className="advantage-card">
-                <h4>纳米微晶技术</h4>
-                <p>独创纳米微晶保鲜技术，有效抑制冰晶生成，保持食材细胞完整性</p>
-              </div>
-              <div className="advantage-card">
-                <h4>冰温精准控制</h4>
-                <p>精准的冰温控制系统，确保食材在最佳保鲜温度区间内存储</p>
-              </div>
-              <div className="advantage-card">
-                <h4>革命性常温配送</h4>
-                <p>创新"工厂HPH处理 + 常温运输 + 终端智能冰温柜"新模式</p>
-              </div>
-            </div>
+        </div>
+        
+        <div className="app-scene-row-4">
+          <div className="app-scene-item">
+            <img 
+              src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/6103a98ff152696572cc127ae6c0bb39fea14616b05faf6d74f3f274fbb3f903.jpg" 
+              alt="手打冰沙饮" 
+            />
+            <div className="app-scene-caption">手打冰沙饮（视频打开）</div>
           </div>
-        </section>
-
-        {/* Applications */}
-        <section className="content-section">
-          <div className="section-header">
-            <h2>应用场景</h2>
-            <div className="section-line"></div>
+          <div className="app-scene-item">
+            <img 
+              src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/d1e003288c145b598dd0a6d660126d56375a1ef38a453cbf308991cfe19615fa.jpg" 
+              alt="解冻快无流失" 
+            />
+            <div className="app-scene-caption">解冻快无流失（视频打开）</div>
           </div>
-          <div className="application-grid">
-            <div className="app-category">
-              <h3>高端肉品</h3>
-              <div className="app-items">
-                <div className="app-item">
-                  <h4>"冻眠一级鲜"</h4>
-                  <p>牛羊肉在-4℃真空环境下可存储15天，仍保持软鲜态和一级品质</p>
-                </div>
-                <div className="app-item">
-                  <h4>无损加工</h4>
-                  <p>可在-6℃下轻松实现牛肉薄切，解冻快速且无血水流失</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="app-category">
-              <h3>新式饮品</h3>
-              <div className="app-items">
-                <div className="app-item">
-                  <h4>DIY冰沙饮</h4>
-                  <p>"超冷沙冰柜"让饮品保持过冷状态，轻轻一摇即可变成冰沙</p>
-                </div>
-                <div className="app-item">
-                  <h4>精酿鲜啤</h4>
-                  <p>彻底解决鲜啤销售半径小的难题，帮助品牌轻松触达全国市场</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="app-category">
-              <h3>果蔬生鲜</h3>
-              <div className="app-items">
-                <div className="app-item">
-                  <h4>水果蔬菜</h4>
-                  <p>同样适用于各类水果、蔬菜的长效保鲜，保持"如初摘般"的新鲜度</p>
-                </div>
-                <div className="app-item">
-                  <h4>水产品</h4>
-                  <p>海鲜产品的超长保鲜，维持最佳品质和口感</p>
-                </div>
-              </div>
-            </div>
+          <div className="app-scene-item">
+            <img 
+              src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/37092c6e8171d6d47acbe0b8dad679081cbadc9d793c96dc94f3dad70fc98f59.jpg" 
+              alt="-6°C牛肉薄切" 
+            />
+            <div className="app-scene-caption">-6°C牛肉薄切（视频打开）</div>
           </div>
-        </section>
-
-        {/* Team */}
-        <section className="content-section">
-          <div className="section-header">
-            <h2>权威技术团队</h2>
-            <div className="section-line"></div>
+          <div className="app-scene-item">
+            <img 
+              src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/37092c6e8171d6d47acbe0b8dad679081cbadc9d793c96dc94f3dad70fc98f59.jpg" 
+              alt="果肉保鲜" 
+            />
+            <div className="app-scene-caption">果肉保鲜（视频打开）</div>
           </div>
-          <div className="team-grid">
-            <div className="team-member">
-              <h4>季俊生</h4>
-              <span className="title">CEO</span>
-              <p>理工博士、高级产品经理、EMBA，家电从业近30年。在世界500强企业担任经营体、创新研究院负责人等职；并自主创业行业首家"3D曲面玻璃"等独角兽企业2家。国内外专利900多项，丰富的成熟企业管理和初创公司开拓经历，具有极强的市场开发能力，对技术创新转化敏锐度高。</p>
-            </div>
-            <div className="team-member">
-              <h4>余铭</h4>
-              <span className="title">首席科学家</span>
-              <p>低温加工与保鲜技术首席，清华大学食品科学与工程领域教授、博导，广东省食品低温加工工程技术中心主任，专注于食品低温加工及冷链保鲜技术的研发与应用。研发冻眠保鲜技术，主导设计食品低温加工新装备，技术成果转化4项，获国内外专利10件（含美国专利2件）。</p>
-            </div>
-            <div className="team-member">
-              <h4>陈昭民</h4>
-              <span className="title">CTO</span>
-              <p>中科院博士、高工、智能烹饪首席与AI算法专家。中科院计算机所研究员，行业首创"益生菌干式熟成技术"创始人，致力于智能烹饪、高端食材深加工、口味研究。有智能家电、食品加工、智能烹饪及机械装备跨行业整合经验，已创立多家技术创新型企业。</p>
-            </div>
-            <div className="team-member">
-              <h4>方祥</h4>
-              <span className="title">战略顾问</span>
-              <p>国际多芬生物与微生物工程专家。华南农业大学博士后教授、博导，食品学院院长，生物工程专业主任，微生物发酵工程及相关领域的学科带头人。发明专利24项，国内外论文80多篇，为公司战略发展高级顾问。</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Company Values */}
-        <section className="content-section company-section">
-          <div className="section-header">
-            <h2>关于鎏鲜</h2>
-            <div className="section-line"></div>
-          </div>
-          <div className="values-content">
-            <div className="value-item">
-              <h4>鎏鲜愿景</h4>
-              <p>重定食材保鲜温场标准，为健康生活保持自然！</p>
-            </div>
-            <div className="value-item">
-              <h4>鎏鲜使命</h4>
-              <p>以鲜为尺用科技锁住时间，让每一口食材如初摘般鲜活！</p>
-            </div>
-            <div className="value-item">
-              <h4>鎏鲜价值观</h4>
-              <p>产业赋能，以技术驱动生态链价值创新！</p>
-            </div>
-          </div>
-          <div className="company-footer">
-            <p>联系我们，开启您的15天保鲜新时代</p>
-            <span className="company-lab">鎏鲜全球鲜味创新实验室</span>
-          </div>
-        </section>
+        </div>
+        
+        <div className="section-divider-thick"></div>
+        
+        {/* 第3段：实验数据与技术验证 */}
+        <div className="experiment-desc">
+          新鲜羊肉和牛肉在贮藏过程中，不同工况下对于羊肉和牛肉的挥发性盐基氮、菌落总数和色泽的影响。
+        </div>
+        
+        <div className="experiment-images-3">
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/071a491dac5d27baf1a7bb6db9bb7eb24608bbf20ba32c6bae76dfcf45614e4e.jpg" 
+            alt="实验数据图1" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/fd271824f034fa7565c9627b735c183b88e94ef684dd99526689ba27ed3c2ccc.jpg" 
+            alt="实验数据图2" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/2f4c2fd4b7bb0022c83ea4d8f89ff4659ccf43686a62495f7a805502b74520af.jpg" 
+            alt="实验数据图3" 
+          />
+        </div>
+        <div className="figure-caption">图1不同处理对羊肉（a）和牛肉（b）TVB-N值的影响</div>
+        
+        <div className="experiment-images-3">
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/8f6f3e121443a4cb29bc953fd7959590bdfa3d2f4ff934c7d9d6b69bc31d296e.jpg" 
+            alt="菌落总数图1" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/133afa477c46fe713ca67008b45b3400c98ff617225df97ba7bcb43cd62c11c1.jpg" 
+            alt="菌落总数图2" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/28b333a0f5df4d753552dfa2e6c642b3ba2881335ad987d679b27431d420301e.jpg" 
+            alt="菌落总数图3" 
+          />
+        </div>
+        
+        <div className="experiment-images-3">
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/61ccf563cfce70668a6717a2e130463b705fe3464f75c849a5694cf2fc093af0.jpg" 
+            alt="色泽影响图1" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/680ffb326a3559dac4f4f7ce037a2c1741fc90e1309bc4df2b0b2e4a2bd18d47.jpg" 
+            alt="色泽影响图2" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/45e80df4f02f7c33e9e6a5e5f2c1892833d122862b5f0de79bde9876b787a7f4.jpg" 
+            alt="色泽影响图3" 
+          />
+        </div>
+        <div className="figure-caption">的影响</div>
+        
+        <div className="single-image-full">
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/4ffea887fe5ead83c360fed514c7e8482b401517f4a36be16695f824b5feabc1.jpg" 
+            alt="色泽数据详图" 
+          />
+        </div>
+        <div className="figure-caption">-2-CIF真空L / -2-C非真空a / -2-C非真空b / -2-C非空 / -4-C非真空 / -4-C非真空a / -4-C非真空b / -4-C真空L / -4-C真空a / -4-C真空b</div>
+        
+        <div className="conclusion-box">
+          <p>-4°C 真空组的羊肉和所有牛肉样品在贮藏期结束后保存软鲜态，结论为一级鲜肉标准，表明冰温保鲜处理的牛羊肉贮藏 15d 也能保持食品品质。</p>
+        </div>
+        
+        <div className="result-label">-4°C 真空牛肉</div>
+        <div className="result-images-row-6">
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/7523d646d8f83b77148788369c09e892f40c4260cf18295bbf440ea3188a7128.jpg" 
+            alt="-4°C真空牛肉1" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/07dc3ac9c55cb686df94c546bc5cbc1d20382510b1136bcc492c49a99a492789.jpg" 
+            alt="-4°C真空牛肉2" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/1aabf4258a8e4059e9552ba30366aa75752ee8ab11bdfd91bd67d5e6fafd0e70.jpg" 
+            alt="-4°C真空牛肉3" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/e4974ddae2a6153c01a3efb6a328ea0f5169ee84f37501f799fe19027e7c99d8.jpg" 
+            alt="-4°C真空牛肉4" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/f85d2f379d42452609158b977d69c08b5472d4105fd382c4bb3025de8b6b022a.jpg" 
+            alt="-4°C真空牛肉5" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/094596e2918dcc9fbf332724046c321022a77d65040801b0f02da8eb41985330.jpg" 
+            alt="-4°C真空牛肉6" 
+          />
+        </div>
+        
+        <div className="single-image-small">
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/f8b98e54ebe8620080cd6aa56cf3d0ec0dc12744e63b7f494d9e41da942d1d4e.jpg" 
+            alt="-4°C真空牛肉补充" 
+          />
+        </div>
+        
+        <div className="result-label">-4°C 真空羊肉</div>
+        <div className="result-images-row-5">
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/42c796bfc2b8a0f48233338728cbcecaf4ad51a64bfab1959449d96902a66e81.jpg" 
+            alt="-4°C真空羊肉1" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/61b799917dd5563cf23539de30e5af28ce370fe5bb9f4cffb71bdd038efd1a49.jpg" 
+            alt="-4°C真空羊肉2" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/01050bb2c9dfca32b69acb9c010f112fc2b4743841f651cb02955a152ae0c02a.jpg" 
+            alt="-4°C真空羊肉3" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/5b3a7a8a14b1c0b59c4694370ef653e9a6a278190ca86ac9cf925c71b6e6f781.jpg" 
+            alt="-4°C真空羊肉4" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/fd145128b6bf47e43fae996625f2844a029972e0a81d5fba33ddc96b2028e53d.jpg" 
+            alt="-4°C真空羊肉5" 
+          />
+        </div>
+        
+        <div className="section-divider-thick"></div>
+        
+        {/* 第4段：市场竞品对标分析 */}
+        <h2 className="compare-section-title">鲜到鲜VS海尔恒磁VS美的微晶技术对标</h2>
+        <p className="compare-subtitle">鲜到鲜技术不需要改变产品形态，实现一级鲜</p>
+        
+        <h3 className="subsection-title">市场信息对标</h3>
+        
+        <div className="market-grid-4">
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/a562bd546a240b37c0db70298fc75b3321f59d81c8d327d014383a740fb9d6aa.jpg" 
+            alt="市场对标图1" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/8f819e8d21df3dcecd24f35b1f02f3082f15a1a4d7e59628b0be91de59ea3740.jpg" 
+            alt="市场对标图2" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/6d68bbc5a480eaa299d8f26fdeab4311bcb76c971e20d00cb662a14317cc37fe.jpg" 
+            alt="市场对标图3" 
+          />
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/fe6319a25f345da06eac953760623bc3ecf7e0a5e976a8e6570b38e8e88a8aa6.jpg" 
+            alt="市场对标图4" 
+          />
+        </div>
+        
+        <div className="market-points">
+          <p>1、恒磁养鲜宣传储存 10 日，微晶宣传 7 天原鲜口感</p>
+          <p>2、恒磁宣传抑制冰晶生成，微晶宣传"仅形成头发丝 1% 大小的冰晶"</p>
+          <p>3、恒磁宣传汁液流失率约为 0（话术模糊），实际测试做不到</p>
+        </div>
+        
+        <div className="compare-conclusion">
+          <div className="compare-conclusion-label">对标结论：</div>
+          <p>海尔择优表达，且宣传点针对性极强，美的强调极端场景效果。</p>
+        </div>
+        
+        <div className="section-divider"></div>
+        
+        {/* 第5段：技术方案差异 */}
+        <h3 className="subsection-title">技术方案差异</h3>
+        
+        <p className="tech-desc">1、送风方式：我司将3代微晶升级后，送风方式由顶部多孔送风改为后部直吹送风。</p>
+        
+        <table className="tech-table">
+          <thead>
+            <tr>
+              <th>维度</th>
+              <th>恒磁养鲜</th>
+              <th>3代微晶（双层微晶）</th>
+              <th>2代微晶/AI抑嘌呤</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>送风方式</td>
+              <td>抽屉环绕风循环</td>
+              <td>后部吹风</td>
+              <td>顶部吹风</td>
+            </tr>
+            <tr>
+              <td>图片</td>
+              <td>出风口<br/>回风口<br/>保温桶<br/>抽屉</td>
+              <td></td>
+              <td>吹风口<br/>保温桶<br/>侧回风口</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <p className="tech-desc">2、控温方式：我司为满足 80% 负载和 25h 拉温要求，采用拉温段 - 回温段交替控温逻辑，单点温度低至 -8°C，加剧过冻现象和温度波动问题。（空载测试）。竞品温度更均匀。</p>
+        
+        <div className="temp-chart">
+          <img 
+            src="https://cdn-mineru.openxlab.org.cn/result/2025-11-25/61be5151-4e9c-4d7c-b2a3-c54b76d91de7/b5c4237c8f85d9bc6f096a45ce8a889dd443be494e33ac6893d210367b7fe39b.jpg" 
+            alt="温度控制曲线对比图" 
+          />
+        </div>
+        
+        <div className="section-divider-thick"></div>
+        
+        {/* 第6段：保鲜效果对比总结 */}
+        <h2 className="final-section-title">鲜到鲜 VS 海尔恒磁 VS 美的微晶：鲜到鲜技术才能实现 15 天保持一级鲜</h2>
+        
+        <div className="test-points">
+          <p>1、测试标准：测试标准负载量更大。各自标准工况下，恒磁保鲜周期10天，微晶保鲜周期7天，均与宣传一致；</p>
+          <p>2、测试效果：少载、半载场景下恒磁效果更优（10天肉色均匀无过冻），满载场景下微晶优势明显，无血水，保鲜期7天；恒磁底部血水较多，保鲜期仅5天</p>
+        </div>
+        
+        <div className="analysis-box">
+          <div className="analysis-title">&gt; 对标结果分析:</div>
+          <p>1、竞品测试标准更接近实际用户场景，我司测试标准要求 80% 负载为极端状态。竞品标准有参考价值。</p>
+          <p>2、采用拉温段-回温段交替控温逻辑，在降温速率优势明显，但拉温段温度低，易造成局部食材过冻；海尔恒磁采用恒温控温逻辑，温度整体控制较均匀且稳定</p>
+        </div>
+        
+        <div className="analysis-box">
+          <div className="analysis-title">&gt; 改善措施:</div>
+          <ol>
+            <li>重新定义微晶技术要求（温度波动和均匀性）</li>
+            <li>修订微晶保鲜测试方法（负载量和食材种类）</li>
+          </ol>
+        </div>
+        
+        <table className="final-table">
+          <thead>
+            <tr>
+              <th rowSpan="2">竞品对标</th>
+              <th rowSpan="2">单点温度波动/℃<br/>(中间环温差值)</th>
+              <th rowSpan="2">降温时间/h</th>
+              <th rowSpan="2">测试标准差异</th>
+              <th colSpan="3">美的微晶VS海尔恒磁保鲜效果对比</th>
+            </tr>
+            <tr>
+              <th>少载（1块）</th>
+              <th>半载（单层）<br/>微晶不均匀，存在部分肉过冻</th>
+              <th>80%负载（多层）<br/>微晶较恒磁保鲜效果优势明显，血水少</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>美的微晶</td>
+              <td>7℃</td>
+              <td>1.5h</td>
+              <td>①食材：猪/鸡/鱼混放<br/>②负载量：容积80%负载<br/>③层数：≤3层</td>
+              <td>易切性、硬度22N<br/>状态：新鲜无异味，微结晶</td>
+              <td>保鲜期：10-14天<br/>状态：存在部分肉过冻、暗红，14天轻微异味</td>
+              <td>保鲜期：7天 标准工况<br/>状态：底部有少量血水，风口位置有过冻现象</td>
+            </tr>
+            <tr>
+              <td>海尔恒磁</td>
+              <td>2.7℃</td>
+              <td>5.7h</td>
+              <td>①食材：牛肉<br/>②负载量：6块平铺<br/>③层数：1层</td>
+              <td>易切性、硬度8N<br/>状态：新鲜无异味，无结晶</td>
+              <td>保鲜期：10-14天<br/>状态：无过冻，鲜红，14天轻微异味</td>
+              <td>保鲜期：5天<br/>状态：底部血水较多</td>
+            </tr>
+            <tr>
+              <td>附图</td>
+              <td>温度波动（平稳段）（200g 2cm 牛肉<br/>20℃→0℃）</td>
+              <td>美得微晶 海尔恒磁<br/>1:1000ml</td>
+              <td>双层微晶 海尔恒磁<br/>1:1000ml</td>
+              <td>双层微晶 海尔恒磁<br/>1:1000ml</td>
+              <td>双层微晶 海尔恒磁<br/>1.5:1000ml</td>
+              <td>血水</td>
+            </tr>
+          </tbody>
+        </table>
       </main>
     </div>
   );
 }
 
-export default PEFDetailPage
+export default PEFDetailPage;
