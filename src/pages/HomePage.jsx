@@ -439,7 +439,7 @@ const TechSection = memo(() => {
                 <div className="skw-page__content">
                   <h2 className="skw-page__heading">
                     <div className="title-line-1">NNP</div> 
-                    <div className="title-line-2">超高压纳米破碎·HPH动态灭菌</div>
+                    <div className="title-line-2">超高压纳米破碎·HPH动态非热杀菌</div>
                   </h2>
                   <button className="tech-button" onClick={() => { 
                     setCurrentVideoUrl('/videos/hph-demo');
@@ -456,7 +456,7 @@ const TechSection = memo(() => {
               <div className="skw-page__skewed">
                 <div className="skw-page__content">
                   <p className="skw-page__description">
-                    超高压纳米破碎技术利用300-400MPa超高压质阀
+                    超高压纳米破碎技术利用300-600MPa超高压质阀
                     <br />
                     通过空化、剪切与撞击实现纳米级破碎与灭菌。
                   </p>
@@ -527,7 +527,7 @@ const TechSection = memo(() => {
               <div className="skw-page__skewed">
                 <div className="skw-page__content">
                   <p className="skw-page__description">
-                    鎏鲜科技专注于冷链食材保鲜技术，
+                    专注于冷链食材保鲜技术，
                     <br />
                     融合冰温保鲜、纳米微晶、超冷冰沙与全冷链系统
                     <br />
